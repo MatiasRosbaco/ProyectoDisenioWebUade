@@ -8,10 +8,11 @@
 </head>
 <body>
     <header>
+        <a class="logo" href="index.html">Estación Lacroze</a>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="servicios.html" class="active">Servicios</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
             </ul>
         </nav>
@@ -19,19 +20,48 @@
 
     <main>
         <h1>Transportes en Estación Lacroze</h1>
-        <p>Página principal de servicios</p>
+        <p>Conocé todos los medios de transporte que conectan la estación con la ciudad y el Gran Buenos Aires.</p>
 
-        <ul>
-            <li><a href="servicios/tren-urquiza.html">Tren Urquiza - Conexión con el Gran Buenos Aires</a></li>
-            <li><a href="servicios/subte-linea-b.html">Subte Línea B - Conexión con el centro</a></li>
-            <li><a href="servicios/colectivos.html">Colectivos - Líneas de la zona</a></li>
-            <li><a href="servicios/taxis-remises.html">Taxis y Remises - Paradas y seguridad</a></li>
-            <li><a href="servicios/movilidad-sustentable.html">Movilidad Sustentable - Bicicletas y Monopatines</a></li>
-        </ul>
+        <div class="cards-grid">
+            <div class="card">
+                <img src="img/trenUrquiza.jpg" alt="Tren Urquiza">
+                <h2>Tren Urquiza</h2>
+                <p>Conectá con el Gran Buenos Aires a través de la línea Urquiza, que recorre los principales centros del conurbano.</p>
+                <a href="servicios/tren-urquiza.html">Ver más</a>
+            </div>
+
+            <div class="card">
+                <img src="img/subteLineaB.jpg" alt="Subte Línea B">
+                <h2>Subte Línea B</h2>
+                <p>Accedé rápidamente al microcentro y al centro porteño mediante la Línea B del subterráneo.</p>
+                <a href="servicios/subte-linea-b.html">Ver más</a>
+            </div>
+
+            <div class="card">
+                <img src="img/ColectivoLacroze.jpg" alt="Colectivos">
+                <h2>Colectivos</h2>
+                <p>Más de 20 líneas de colectivos recorren la zona, conectando barrios y localidades cercanas.</p>
+                <a href="servicios/colectivos.html">Ver más</a>
+            </div>
+
+            <div class="card">
+                <img src="img/TaxisLacroze2.jpg" alt="Taxis y Remises">
+                <h2>Taxis y Remises</h2>
+                <p>Encontrá paradas oficiales de taxis y remises para un traslado seguro desde y hacia la estación.</p>
+                <a href="servicios/taxis-remises.html">Ver más</a>
+            </div>
+
+            <div class="card">
+                <img src="img/BiciPublica.jpg" alt="Movilidad Sustentable">
+                <h2>Movilidad Sustentable</h2>
+                <p>Usá bicicletas públicas y monopatines eléctricos como alternativa ecológica para moverte por la ciudad.</p>
+                <a href="servicios/movilidad-sustentable.html">Ver más</a>
+            </div>
+        </div>
     </main>
 
     <footer>
-        <p>Estación Lacroze &copy; 2026</p>
+        <p>Estación Lacroze &copy; 2026 &mdash; <a href="contacto.html">Contacto</a></p>
     </footer>
 </body>
 </html>

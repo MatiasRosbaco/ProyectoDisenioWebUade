@@ -8,9 +8,10 @@
 </head>
 <body>
     <header>
+        <a class="logo" href="index.html">Estación Lacroze</a>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="servicios.html">Servicios</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
             </ul>
@@ -18,12 +19,87 @@
     </header>
 
     <main>
-        <h1>Estación Federico Lacroze</h1>
-        <p>Presentación del proyecto</p>
+        <div class="hero">
+            <h1>Estación Federico Lacroze</h1>
+            <p>Tu punto de conexión con la ciudad. Explorá todos los medios de transporte disponibles en la estación y planificá tu viaje de forma fácil y rápida.</p>
+        </div>
+
+        <div class="carousel">
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-slide">
+                    <img src="img/trenUrquiza.jpg" alt="Tren Urquiza">
+                    <div class="carousel-caption">
+                        <h2>Tren Urquiza</h2>
+                        <p>Conexión con el Gran Buenos Aires</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/subteLineaB.jpg" alt="Subte Línea B">
+                    <div class="carousel-caption">
+                        <h2>Subte Línea B</h2>
+                        <p>Conexión con el centro</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/ColectivoLacroze.jpg" alt="Colectivos">
+                    <div class="carousel-caption">
+                        <h2>Colectivos</h2>
+                        <p>Líneas de la zona</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/TaxisLacroze2.jpg" alt="Taxis y Remises">
+                    <div class="carousel-caption">
+                        <h2>Taxis y Remises</h2>
+                        <p>Paradas y seguridad</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="img/BiciPublica.jpg" alt="Movilidad Sustentable">
+                    <div class="carousel-caption">
+                        <h2>Movilidad Sustentable</h2>
+                        <p>Bicicletas y Monopatines</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-btn prev" id="prevBtn">&#8249;</button>
+            <button class="carousel-btn next" id="nextBtn">&#8250;</button>
+
+            <div class="carousel-dots" id="carouselDots"></div>
+        </div>
     </main>
 
     <footer>
-        <p>Estación Lacroze &copy; 2026</p>
+        <p>Estación Lacroze &copy; 2026 &mdash; <a href="contacto.html">Contacto</a></p>
     </footer>
+
+    <script>
+        const track = document.getElementById('carouselTrack');
+        const slides = track.querySelectorAll('.carousel-slide');
+        const dotsContainer = document.getElementById('carouselDots');
+        let current = 0;
+
+        slides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goTo(i));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = dotsContainer.querySelectorAll('button');
+
+        function goTo(index) {
+            current = (index + slides.length) % slides.length;
+            track.style.transform = `translateX(-${current * 100}%)`;
+            dots.forEach(d => d.classList.remove('active'));
+            dots[current].classList.add('active');
+        }
+
+        document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+        document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
+
+        setInterval(() => goTo(current + 1), 4000);
+    </script>
 </body>
 </html>
