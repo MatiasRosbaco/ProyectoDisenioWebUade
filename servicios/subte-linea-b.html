@@ -4,7 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estación Lacroze - Subte Línea B</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Overrides de acento para Línea B */
+        .seccion h2 {
+            border-bottom-color: #C8102E;
+        }
+        .card {
+            border-top-color: #C8102E;
+        }
+        .formas-pago ul li {
+            border-left-color: #C8102E;
+        }
+        .hero-eyebrow {
+            color: #C8102E;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -18,9 +36,13 @@
         </nav>
     </header>
 
-    <main>
+    <div class="page-hero linea-b">
+        <span class="line-badge red">Línea B · Subterráneo</span>
         <h1>Subte Línea B</h1>
-        <p>La Línea B conecta la Estación Federico Lacroze con el corazón del microcentro porteño, recorriendo la Avenida Corrientes en apenas minutos.</p>
+        <p>La Línea B conecta la Estación Federico Lacroze con el corazón del microcentro porteño, recorriendo la Avenida Corrientes en apenas 23 minutos.</p>
+    </div>
+
+    <main>
 
         <!-- VIEJOS DE JAPÓN -->
         <section class="seccion">
@@ -39,10 +61,29 @@
         <!-- RECORRIDO -->
         <section class="seccion">
             <h2>El Recorrido</h2>
-            <div class="recorrido-img">
-                <img src="../img/Línea_B_del_Subte_de_Buenos_Aires.svg" alt="Mapa del recorrido de la Línea B">
-                <p>La Línea B recorre <strong>11,4 km</strong> a través de <strong>17 estaciones</strong>, uniendo la cabecera en <strong>Federico Lacroze</strong> (Chacarita) con <strong>Leandro N. Alem</strong> en el microcentro, siguiendo el trayecto de la Avenida Corrientes.</p>
-                <p>Las estaciones intermedias más importantes son <strong>Medrano</strong>, <strong>Pueyrredón</strong>, <strong>Callao</strong> y <strong>Uruguay</strong>, con combinaciones con otras líneas de subte en <strong>Carlos Gardel</strong> (Línea A) y <strong>Pasteur</strong>. El viaje completo de punta a punta dura aproximadamente <strong>23 minutos</strong>.</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+                <div class="recorrido-img" style="margin-top: 0;">
+                    <img src="../img/Línea_B_del_Subte_de_Buenos_Aires.svg" alt="Mapa del recorrido de la Línea B">
+                    <p>La Línea B recorre <strong>11,4 km</strong> a través de <strong>17 estaciones</strong>, uniendo la cabecera en <strong>Federico Lacroze</strong> (Chacarita) con <strong>Leandro N. Alem</strong> en el microcentro. El viaje completo dura aproximadamente <strong>23 minutos</strong>.</p>
+                </div>
+                <div class="paradas-list">
+                    <div class="parada linea-b terminal">Federico Lacroze</div>
+                    <div class="parada linea-b">Tronador</div>
+                    <div class="parada linea-b">Los Incas — Parque Chas</div>
+                    <div class="parada linea-b">Dorrego</div>
+                    <div class="parada linea-b">Malabia</div>
+                    <div class="parada linea-b">Medrano</div>
+                    <div class="parada linea-b">Ángel Gallardo</div>
+                    <div class="parada linea-b">Corrientes</div>
+                    <div class="parada linea-b">Carlos Gardel ↔ Línea A</div>
+                    <div class="parada linea-b">Pueyrredón</div>
+                    <div class="parada linea-b">Pasteur — AMIA</div>
+                    <div class="parada linea-b">Callao</div>
+                    <div class="parada linea-b">Uruguay</div>
+                    <div class="parada linea-b">Carlos Pellegrini ↔ Líneas C / D</div>
+                    <div class="parada linea-b">Florida</div>
+                    <div class="parada linea-b">Leandro N. Alem</div>
+                </div>
             </div>
         </section>
 
