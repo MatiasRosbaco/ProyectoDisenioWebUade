@@ -4,8 +4,223 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Línea Urquiza</title>
-    <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            color: #222;
+            background: #fff;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        p  { line-height: 1.7; color: #444; }
+        h2 { font-size: 32px; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; border-left: 5px solid #107dc0; padding-left: 14px; }
+        h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #107dc0; }
+
+        .subtitulo { font-size: 14px; color: #888; margin-bottom: 30px; padding-left: 19px; }
+
+        header {
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo { display: flex; align-items: center; gap: 10px; }
+
+        .logo-u {
+            background: #107dc0;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 800;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-texto { color: #fff; font-size: 18px; font-weight: 800; }
+
+        header nav a {
+            color: #aaa;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-left: 20px;
+            transition: color 0.2s;
+        }
+
+        header nav a:hover { color: #107dc0; }
+
+        .hero {
+            background: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 90px 40px 70px;
+        }
+
+        .hero h1 { font-size: 70px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; }
+        .hero h1 span { color: #107dc0; }
+        .hero > p  { font-size: 17px; color: #aaa; margin-bottom: 40px; }
+
+        .hero-datos { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+        .dato {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 10px;
+            padding: 18px 26px;
+            min-width: 120px;
+        }
+
+        .dato strong { display: block; font-size: 26px; font-weight: 800; }
+        .dato span   { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+
+        .seccion { padding: 70px 40px; max-width: 1100px; margin: 0 auto; }
+
+        .fondo-oscuro {
+            background: #1e1e1e;
+            max-width: 100%;
+            padding: 70px 40px;
+        }
+
+        .fondo-crema {
+            background: #f7f3ee;
+            max-width: 100%;
+            padding: 70px 40px;
+        }
+
+        .fondo-oscuro > *, .fondo-crema > * { max-width: 1100px; margin-left: auto; margin-right: auto; }
+        .fondo-oscuro h2 { color: #fff; }
+        .fondo-oscuro .subtitulo { color: #666; }
+
+        .dos-columnas { display: flex; gap: 30px; }
+        .dos-columnas > * { flex: 1; }
+
+        .tres-columnas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+        .tarjeta {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 22px;
+            transition: border-color 0.2s;
+        }
+
+        .tarjeta:hover { border-color: #107dc0; }
+
+        .tarjeta ul li {
+            font-size: 14px;
+            color: #555;
+            padding: 4px 0 4px 16px;
+            position: relative;
+        }
+
+        .tarjeta ul li::before { content: '›'; color: #107dc0; position: absolute; left: 0; font-weight: 700; }
+
+        .tarjeta p { font-size: 14px; color: #666; margin-bottom: 10px; }
+
+        .centro { text-align: center; }
+
+        .icono { font-size: 30px; margin-bottom: 10px; display: block; }
+
+        .frecuencias { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+        .frecuencias .tarjeta { flex: 1; min-width: 160px; }
+        .frecuencias strong { display: block; font-size: 18px; color: #107dc0; margin-bottom: 4px; }
+        .frecuencias h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 6px; }
+        .frecuencias p { font-size: 12px; color: #888; }
+
+        .lista-icono li { padding: 8px 10px; margin-bottom: 6px; background: #f7f3ee; border-left: 4px solid #107dc0; border-radius: 0 6px 6px 0; font-size: 14px; color: #444; }
+
+        .ficha { background: #1a1a1a; border-radius: 10px; overflow: hidden; }
+        .ficha h3 { background: #107dc0; color: #fff; padding: 12px 18px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
+
+        .ficha table { width: 100%; border-collapse: collapse; }
+        .ficha td { padding: 9px 18px; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .ficha tr:last-child td { border-bottom: none; }
+        .ficha td:first-child { color: #888; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+        .ficha td:last-child { color: #fff; }
+
+
+        .estaciones { border-left: 3px solid #107dc0; padding-left: 24px; }
+
+        .estacion { display: flex; align-items: flex-start; gap: 14px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .estacion:last-child { border-bottom: none; }
+
+        .estacion span { color: #555; font-size: 20px; line-height: 1; flex-shrink: 0; margin-top: 2px; }
+        .estacion.terminal span { color: #107dc0; font-size: 18px; }
+
+        .estacion strong { display: block; color: #fff; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .estacion.terminal strong { color: #107dc0; font-size: 15px; }
+        .estacion small { color: #666; font-size: 12px; }
+
+
+        /* --- TABLA HORARIOS --- */
+        .tabla-scroll { overflow-x: auto; border-radius: 10px; border: 2px solid #ddd; }
+
+        .tabla-horarios { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 500px; }
+
+        .tabla-horarios thead tr { background: #1a1a1a; color: #fff; }
+        .tabla-horarios th { padding: 11px 14px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-align: left; }
+        .tabla-horarios th:first-child { background: #107dc0; }
+
+        .tabla-horarios td { padding: 9px 14px; color: #444; border-bottom: 1px solid #eee; }
+        .tabla-horarios td:first-child { font-weight: 700; color: #222; }
+        .tabla-horarios tbody tr:hover { background: #fef8f8; }
+
+        .tabla-horarios tr.pico { background: #fff0f0; }
+        .tabla-horarios tr.pico td { color: #107dc0; font-weight: 600; }
+
+        .aviso {
+            margin-top: 30px;
+            background: #1a1a1a;
+            color: rgba(255,255,255,0.7);
+            padding: 18px 24px;
+            border-radius: 10px;
+            border-left: 5px solid #107dc0;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .aviso strong { color: #fff; }
+
+        footer {
+            background: #111;
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            padding: 40px;
+            font-size: 13px;
+            line-height: 2;
+        }
+
+        footer nav a { color: rgba(255,255,255,0.4); margin: 0 10px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        footer nav a:hover { color: #107dc0; }
+        footer a { color: rgba(255,255,255,0.4); }
+        footer a:hover { color: #107dc0; }
+
+        @media (max-width: 800px) {
+            .dos-columnas, .tres-columnas { flex-direction: column; display: flex; }
+            .hero h1 { font-size: 44px; }
+            .seccion { padding: 50px 20px; }
+            .fondo-oscuro, .fondo-crema { padding: 50px 20px; }
+            header { padding: 14px 20px; }
+            header nav { display: none; }
+        }
+    </style>
 </head>
 <body>
     <header>
