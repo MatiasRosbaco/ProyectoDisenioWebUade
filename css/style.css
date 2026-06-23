@@ -76,7 +76,8 @@ header .logo {
 header nav ul {
     list-style: none;
     display: flex;
-    gap: 2rem;
+    gap: 1.25rem;
+    flex-wrap: wrap;
 }
 
 header nav ul li a {

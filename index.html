@@ -16,6 +16,9 @@
             <ul>
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="consulta-viajes.html">Consultar Viaje</a></li>
+                <li><a href="servicios-terminal.html">Terminal</a></li>
+                <li><a href="mapa.html">Mapa</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
             </ul>
         </nav>
@@ -73,6 +76,40 @@
             <button class="carousel-btn next" id="nextBtn">&#8250;</button>
 
             <div class="carousel-dots" id="carouselDots"></div>
+        </div>
+        <!-- Accesos rápidos -->
+        <div style="margin-top: 2.5rem;">
+            <div style="font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted); margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--line);">Herramientas del centro de transporte</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+
+                <a href="consulta-viajes.html" style="text-decoration:none;">
+                    <div style="background:#fff; border:1px solid var(--line); border-top:3px solid var(--yellow); padding:1.5rem; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 6px 20px rgba(26,41,64,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+                        <div style="font-family:var(--mono);font-size:0.62rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--muted);margin-bottom:0.5rem;">Planificador</div>
+                        <div style="font-family:var(--serif);font-size:1.3rem;color:var(--navy);font-weight:600;letter-spacing:-0.01em;margin-bottom:0.5rem;">Consultar Viaje</div>
+                        <div style="font-size:0.875rem;color:var(--ink-soft);line-height:1.5;">Encontrá el transporte recomendado, andén de salida, tiempo y costo estimado para llegar a tu destino.</div>
+                        <div style="font-family:var(--mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--yellow-dark,#D99A1F);margin-top:1rem;font-weight:600;">Planificar →</div>
+                    </div>
+                </a>
+
+                <a href="mapa.html" style="text-decoration:none;">
+                    <div style="background:#fff; border:1px solid var(--line); border-top:3px solid var(--navy); padding:1.5rem; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 6px 20px rgba(26,41,64,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+                        <div style="font-family:var(--mono);font-size:0.62rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--muted);margin-bottom:0.5rem;">Orientación</div>
+                        <div style="font-family:var(--serif);font-size:1.3rem;color:var(--navy);font-weight:600;letter-spacing:-0.01em;margin-bottom:0.5rem;">Mapa de la Terminal</div>
+                        <div style="font-size:0.875rem;color:var(--ink-soft);line-height:1.5;">Plano interactivo con andenes, accesos, baños, gastronomía, esperas y todos los servicios de la estación.</div>
+                        <div style="font-family:var(--mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--yellow-dark,#D99A1F);margin-top:1rem;font-weight:600;">Ver mapa →</div>
+                    </div>
+                </a>
+
+                <a href="servicios-terminal.html" style="text-decoration:none;">
+                    <div style="background:#fff; border:1px solid var(--line); border-top:3px solid var(--green,#4A7C59); padding:1.5rem; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 6px 20px rgba(26,41,64,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+                        <div style="font-family:var(--mono);font-size:0.62rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--muted);margin-bottom:0.5rem;">Dentro de la terminal</div>
+                        <div style="font-family:var(--serif);font-size:1.3rem;color:var(--navy);font-weight:600;letter-spacing:-0.01em;margin-bottom:0.5rem;">Servicios</div>
+                        <div style="font-size:0.875rem;color:var(--ink-soft);line-height:1.5;">Baños, oficina de información, gastronomía, áreas de espera, estacionamiento y Wi-Fi gratuito.</div>
+                        <div style="font-family:var(--mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--yellow-dark,#D99A1F);margin-top:1rem;font-weight:600;">Ver servicios →</div>
+                    </div>
+                </a>
+
+            </div>
         </div>
     </main>
 

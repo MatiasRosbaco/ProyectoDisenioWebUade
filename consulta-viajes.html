@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar Viaje — Estación Lacroze</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* ── LAYOUT CONSULTA ── */
+        .consulta-layout {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 2rem;
+            align-items: start;
+            margin-top: 2rem;
+        }
+
+        /* ── FORMULARIO ── */
+        .form-consulta {
+            background: #fff;
+            border: 1px solid var(--line);
+            padding: 2rem;
+        }
+
+        .form-consulta label {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .form-consulta select {
+            width: 100%;
+            padding: 0.65rem 0.9rem;
+            border: 1px solid var(--line);
+            background: var(--cream);
+            font-family: var(--sans);
+            font-size: 0.95rem;
+            color: var(--navy);
+            outline: none;
+            margin-bottom: 1.25rem;
+            border-radius: 0;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.9rem center;
+            padding-right: 2.5rem;
+            cursor: pointer;
+        }
+
+        .form-consulta select:focus {
+            border-color: var(--navy);
+        }
+
+        .btn-service {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: var(--navy);
+            color: var(--cream);
+            font-family: var(--sans);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .btn-service:hover,
+        .btn-service:focus {
+            background: var(--yellow);
+            color: var(--navy);
+            outline: none;
+        }
+
+        /* ── PANEL DERECHO: ESTADO VACÍO + RESULTADO ── */
+        .resultado-panel {
+            min-height: 340px;
+        }
+
+        /* Estado vacío */
+        .estado-vacio {
+            border: 1px dashed var(--line);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 3rem 2rem;
+            min-height: 340px;
+            gap: 1rem;
+        }
+
+        .estado-vacio-icon {
+            width: 56px;
+            height: 56px;
+            opacity: 0.18;
+        }
+
+        .estado-vacio p {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--muted);
+            line-height: 1.7;
+            max-width: 240px;
+        }
+
+        /* ── RESULT CARD ── */
+        .result-card {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--result-accent, var(--yellow));
+            padding: 2rem;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            display: none;
+        }
+
+        .result-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            display: block;
+        }
+
+        .result-badge {
+            display: inline-block;
+            padding: 0.3rem 0.85rem;
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1rem;
+            border-radius: 100px;
+        }
+
+        .result-transport {
+            font-family: var(--serif);
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--navy);
+            letter-spacing: -0.02em;
+            margin-bottom: 0.25rem;
+            line-height: 1.1;
+        }
+
+        .result-destino {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.85rem;
+            margin: 1.25rem 0;
+        }
+
+        .result-stat {
+            background: var(--cream);
+            padding: 1rem;
+            border: 1px solid var(--line);
+        }
+
+        .result-stat dt {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--muted);
+            margin-bottom: 0.4rem;
+        }
+
+        .result-stat dd {
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            color: var(--navy);
+            font-weight: 500;
+            line-height: 1.1;
+        }
+
+        .result-platform {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            background: var(--cream);
+            border: 1px solid var(--line);
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-platform svg {
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .result-platform-text {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--navy);
+            letter-spacing: 0.05em;
+            line-height: 1.5;
+        }
+
+        .result-platform-label {
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .result-tip {
+            background: var(--cream);
+            border-left: 3px solid var(--yellow);
+            padding: 0.85rem 1rem;
+            font-size: 0.875rem;
+            color: var(--ink-soft);
+            margin-top: 1rem;
+            line-height: 1.6;
+        }
+
+        .alert-pico {
+            background: #fef7e6;
+            border-left: 3px solid var(--yellow-dark, #D99A1F);
+            padding: 0.7rem 1rem;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--navy);
+            margin-top: 0.75rem;
+        }
+
+        /* ── SEPARADOR SECCIÓN CONTEXTO ── */
+        .seccion-contexto {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--line);
+        }
+
+        .seccion-contexto-label {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--muted);
+            margin-bottom: 1.25rem;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .tip-item {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-top: 3px solid var(--line);
+            padding: 1.25rem;
+        }
+
+        .tip-item.amarillo { border-top-color: var(--yellow); }
+        .tip-item.rojo     { border-top-color: var(--red); }
+        .tip-item.verde    { border-top-color: var(--green); }
+        .tip-item.navy     { border-top-color: var(--navy); }
+
+        .tip-item-label {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .tip-item h3 {
+            font-family: var(--serif);
+            font-size: 1rem;
+            color: var(--navy);
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+            line-height: 1.2;
+        }
+
+        .tip-item p {
+            font-size: 0.82rem;
+            color: var(--ink-soft);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .consulta-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .resultado-panel {
+                min-height: auto;
+            }
+
+            .estado-vacio {
+                min-height: 200px;
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .result-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* ── REDUCED MOTION ── */
+        @media (prefers-reduced-motion: reduce) {
+            .result-card {
+                transition: none;
+            }
+
+            .hero-eyebrow .pulse {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a class="logo" href="index.html">Estación Lacroze</a>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="consulta-viajes.html" class="active">Consultar Viaje</a></li>
+            <li><a href="servicios-terminal.html">Terminal</a></li>
+            <li><a href="mapa.html">Mapa</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-eyebrow"><span class="pulse"></span>Planificá tu viaje</div>
+        <h1>Consulta de <em>Viajes.</em></h1>
+        <p>Seleccioná tu destino y te indicamos el transporte recomendado, andén de salida, tiempo y costo estimado.</p>
+    </div>
+
+    <!-- LAYOUT PRINCIPAL -->
+    <div class="consulta-layout">
+
+        <!-- COLUMNA IZQUIERDA: FORMULARIO -->
+        <div class="form-consulta">
+            <form id="formConsulta" novalidate>
+
+                <label for="destino">¿A dónde vas?</label>
+                <select id="destino" name="destino" required>
+                    <option value="" disabled selected>Elegí tu destino</option>
+                    <option value="microcentro">Microcentro / Centro</option>
+                    <option value="palermo">Palermo / Recoleta</option>
+                    <option value="villa-crespo">Villa Crespo / Almagro</option>
+                    <option value="colegiales">Colegiales / Belgrano</option>
+                    <option value="gran-ba">Gran Buenos Aires (General)</option>
+                    <option value="jose-leon-suarez">José León Suárez / Lemos</option>
+                    <option value="william-morris">William Morris / Del Viso</option>
+                    <option value="aeropuerto">Aeropuerto Ezeiza (EZE)</option>
+                    <option value="aeroparque">Aeroparque Jorge Newbery (AEP)</option>
+                    <option value="cercano">Destino cercano (hasta 3 km)</option>
+                    <option value="taxi">Destino personalizado (taxi/remís)</option>
+                </select>
+
+                <label for="hora">¿Cuándo salís?</label>
+                <select id="hora" name="hora">
+                    <option value="pico">Ahora (hora pico)</option>
+                    <option value="manana">Mañana temprano (6–9 hs)</option>
+                    <option value="mediodia">Mediodía (12–15 hs)</option>
+                    <option value="tarde-noche">Tarde-noche (19–23 hs)</option>
+                </select>
+
+                <button type="submit" class="btn-service">Ver recomendación →</button>
+
+            </form>
+        </div>
+
+        <!-- COLUMNA DERECHA: RESULTADO -->
+        <div class="resultado-panel">
+
+            <!-- Estado vacío (visible por defecto) -->
+            <div class="estado-vacio" id="estadoVacio">
+                <svg class="estado-vacio-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="4" y="12" width="48" height="32" rx="2" stroke="#1A2940" stroke-width="2.5"/>
+                    <line x1="4" y1="22" x2="52" y2="22" stroke="#1A2940" stroke-width="2.5"/>
+                    <line x1="18" y1="12" x2="18" y2="44" stroke="#1A2940" stroke-width="2.5"/>
+                    <circle cx="11" cy="17" r="2" fill="#1A2940"/>
+                    <line x1="24" y1="30" x2="46" y2="30" stroke="#1A2940" stroke-width="2"/>
+                    <line x1="24" y1="37" x2="38" y2="37" stroke="#1A2940" stroke-width="2"/>
+                </svg>
+                <p>Seleccioná un destino para ver el transporte recomendado y el andén de salida.</p>
+            </div>
+
+            <!-- Card de resultado (oculta hasta consulta) -->
+            <div class="result-card" id="resultado" style="display:none" aria-live="polite">
+
+                <!-- Badge transporte -->
+                <span class="result-badge" id="resBadge"></span>
+
+                <!-- Nombre del transporte -->
+                <div class="result-transport" id="resTransport"></div>
+                <div class="result-destino" id="resDestino"></div>
+
+                <!-- Andén -->
+                <div class="result-platform" id="resPlatform">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect x="2" y="4" width="16" height="12" rx="1" stroke="#1A2940" stroke-width="1.5"/>
+                        <line x1="2" y1="8" x2="18" y2="8" stroke="#1A2940" stroke-width="1.5"/>
+                        <line x1="7" y1="4" x2="7" y2="16" stroke="#1A2940" stroke-width="1.5"/>
+                    </svg>
+                    <div>
+                        <span class="result-platform-label">Andén / Acceso</span>
+                        <div class="result-platform-text" id="resPlatformText"></div>
+                    </div>
+                </div>
+
+                <!-- Grid de estadísticas -->
+                <dl class="result-grid">
+                    <div class="result-stat">
+                        <dt>Tiempo estimado</dt>
+                        <dd id="resTime"></dd>
+                    </div>
+                    <div class="result-stat">
+                        <dt>Costo aprox.</dt>
+                        <dd id="resCost"></dd>
+                    </div>
+                </dl>
+
+                <!-- Tip -->
+                <div class="result-tip" id="resTip"></div>
+
+                <!-- Aviso hora pico (condicional) -->
+                <div class="alert-pico" id="alertPico" style="display:none">
+                    ⚑ Servicio con alta demanda. Considerá salir con 10 min de anticipación.
+                </div>
+
+            </div>
+
+        </div><!-- /resultado-panel -->
+
+    </div><!-- /consulta-layout -->
+
+    <!-- SECCIÓN CONTEXTUAL: CONSEJOS GENERALES -->
+    <div class="seccion-contexto">
+        <div class="seccion-contexto-label">Información útil para el viajero</div>
+        <div class="tips-grid">
+            <div class="tip-item amarillo">
+                <div class="tip-item-label">Tren Urquiza</div>
+                <h3>Comprá el boleto antes de embarcar</h3>
+                <p>La boletería del Tren Urquiza está en la plataforma principal. En hora pico, la fila puede demorar hasta 8 minutos.</p>
+            </div>
+            <div class="tip-item rojo">
+                <div class="tip-item-label">Subte Línea B</div>
+                <h3>SUBE con saldo: sin demoras en el molinete</h3>
+                <p>El acceso al subte se realiza por el molinete sur. Cargá la SUBE con antelación en las máquinas del hall o en kioscos cercanos.</p>
+            </div>
+            <div class="tip-item verde">
+                <div class="tip-item-label">Ecobici / Monopatines</div>
+                <h3>La app primero, la bici después</h3>
+                <p>Verificá disponibilidad en la app EcoBici BA antes de salir. En días de lluvia, el stock en las estaciones cercanas se agota rápido.</p>
+            </div>
+            <div class="tip-item navy">
+                <div class="tip-item-label">Colectivos</div>
+                <h3>El cartel del frente es tu guía</h3>
+                <p>Las paradas de colectivos están sobre Av. Federico Lacroze. Confirmá el ramal en el cartel del frente antes de subir.</p>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    <p>Estación Lacroze &copy; 2026 &mdash; <a href="contacto.html">Contacto</a></p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const tripData = {
+        microcentro: {
+            label: 'Microcentro / Centro',
+            transport: 'Subte Línea B',
+            platform: 'Molinete sur — Acceso Subte',
+            time: 23,
+            cost: 250,
+            accent: '#C8102E',
+            tip: 'Dirección Leandro N. Alem. Frecuencia cada 5 min en hora pico.'
+        },
+        palermo: {
+            label: 'Palermo / Recoleta',
+            transport: 'Subte Línea B → transborde D',
+            platform: 'Molinete sur — Acceso Subte',
+            time: 32,
+            cost: 250,
+            accent: '#C8102E',
+            tip: 'Bajá en Carlos Pellegrini y transbordá a la Línea D dirección Congreso de Tucumán.'
+        },
+        'villa-crespo': {
+            label: 'Villa Crespo / Almagro',
+            transport: 'Colectivo Líneas 39 / 65',
+            platform: 'Parada colectivos — Av. Federico Lacroze',
+            time: 18,
+            cost: 250,
+            accent: '#1A2940',
+            tip: 'Línea 39 hacia Constitución o Línea 65 hacia Palermo.'
+        },
+        colegiales: {
+            label: 'Colegiales / Belgrano',
+            transport: 'Colectivo Líneas 42 / 151',
+            platform: 'Parada colectivos — Av. Federico Lacroze (norte)',
+            time: 12,
+            cost: 250,
+            accent: '#1A2940',
+            tip: 'Múltiples líneas frecuentes hacia el norte. Verificá el cartel del colectivo.'
+        },
+        'gran-ba': {
+            label: 'Gran Buenos Aires (General)',
+            transport: 'Tren Urquiza',
+            platform: 'Andén 1 o 2 — Plataforma Tren Urquiza',
+            time: 45,
+            cost: 350,
+            accent: '#F4B842',
+            tip: 'Consultá el cuadro de destinos en la pantalla del andén. Comprá el boleto en boletería.'
+        },
+        'jose-leon-suarez': {
+            label: 'José León Suárez / Lemos',
+            transport: 'Tren Urquiza',
+            platform: 'Andén 1 — Plataforma Tren Urquiza',
+            time: 38,
+            cost: 350,
+            accent: '#F4B842',
+            tip: 'Ramal José León Suárez. Sale cada 20 min en hora pico.'
+        },
+        'william-morris': {
+            label: 'William Morris / Del Viso',
+            transport: 'Tren Urquiza',
+            platform: 'Andén 2 — Plataforma Tren Urquiza',
+            time: 55,
+            cost: 350,
+            accent: '#F4B842',
+            tip: 'Ramal Migueletes o Del Viso. Verificar destino en pantalla del andén.'
+        },
+        aeropuerto: {
+            label: 'Aeropuerto Ezeiza (EZE)',
+            transport: 'Tren Urquiza → combinaciones',
+            platform: 'Andén 1 — Plataforma Tren Urquiza',
+            time: 90,
+            cost: 3500,
+            accent: '#F4B842',
+            tip: 'Tren hasta Once, luego Aeropuerto Express o colectivo Ezeiza desde Liniers.'
+        },
+        aeroparque: {
+            label: 'Aeroparque Jorge Newbery (AEP)',
+            transport: 'Subte Línea B → taxi',
+            platform: 'Molinete sur — Acceso Subte',
+            time: 40,
+            cost: 1200,
+            accent: '#C8102E',
+            tip: 'Bajá en Pasteur o Pueyrredón, tomá taxi hasta Aeroparque (~$900 adicionales).'
+        },
+        cercano: {
+            label: 'Destino cercano (hasta 3 km)',
+            transport: 'Ecobici / Monopatín eléctrico',
+            platform: 'Estación Ecobici — Salida norte (Av. Lacroze)',
+            time: 12,
+            cost: 0,
+            accent: '#4A7C59',
+            tip: 'Gratis con SUBE o la app EcoBici BA. Ideal para distancias cortas en clima templado.'
+        },
+        taxi: {
+            label: 'Destino personalizado (taxi/remís)',
+            transport: 'Taxi / Remís oficial',
+            platform: 'Parada oficial taxis — Lateral norte de la estación',
+            time: null,
+            cost: null,
+            accent: '#4A6FA5',
+            tip: 'Tarifa según taxímetro. Parada con control de tarifas. Pedí siempre comprobante.'
+        }
+    };
+
+    const form        = document.getElementById('formConsulta');
+    const selectDest  = document.getElementById('destino');
+    const selectHora  = document.getElementById('hora');
+    const estadoVacio = document.getElementById('estadoVacio');
+    const resultado   = document.getElementById('resultado');
+    const alertPico   = document.getElementById('alertPico');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const key  = selectDest.value;
+        const hora = selectHora.value;
+
+        if (!key) {
+            selectDest.focus();
+            return;
+        }
+
+        const trip = tripData[key];
+        if (!trip) return;
+
+        // Formatear valores
+        const timeStr = trip.time === null
+            ? 'Variable según tráfico'
+            : trip.time + ' min';
+
+        let costStr;
+        if (trip.cost === null) {
+            costStr = 'Según taxímetro';
+        } else if (trip.cost === 0) {
+            costStr = 'Gratuito';
+        } else {
+            costStr = '$' + trip.cost.toLocaleString('es-AR');
+        }
+
+        // Inyectar datos
+        document.getElementById('resBadge').textContent      = trip.transport;
+        document.getElementById('resBadge').style.background = trip.accent;
+        document.getElementById('resTransport').textContent  = trip.transport;
+        document.getElementById('resDestino').textContent    = 'Destino: ' + trip.label;
+        document.getElementById('resPlatformText').textContent = trip.platform;
+        document.getElementById('resTime').textContent       = timeStr;
+        document.getElementById('resCost').textContent       = costStr;
+        document.getElementById('resTip').textContent        = trip.tip;
+
+        // Color del borde izquierdo de la card
+        resultado.style.setProperty('--result-accent', trip.accent);
+
+        // Alerta hora pico
+        const esPico = hora === 'pico' || hora === 'tarde-noche';
+        alertPico.style.display = esPico ? 'block' : 'none';
+
+        // Mostrar resultado, ocultar vacío
+        estadoVacio.style.display = 'none';
+
+        // Resetear animación
+        resultado.style.display = 'block';
+        resultado.classList.remove('visible');
+
+        // Forzar reflow para que la transición se dispare
+        void resultado.offsetWidth;
+        resultado.classList.add('visible');
+
+        // Scroll suave al resultado en mobile
+        if (window.innerWidth <= 900) {
+            resultado.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+</script>
+
+</body>
+</html>
