@@ -3,328 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estación Lacroze - Taxis y Remises</title>
-
-    <!-- Fuentes del proyecto -->
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700&family=DM+Sans:wght@400;500&family=JetBrains+Mono&display=swap" rel="stylesheet">
-
-    <style>
-        /* ---- Variables de color del proyecto ---- */
-        :root {
-            --navy: #1A2940;
-            --yellow: #F4B842;
-            --cream: #FAF6EF;
-            --carbon: #1A1A1A;
-            --concrete: #E7E0CF;
-            --taxi-blue: #4A6FA5;
-        }
-
-        /* ---- Reset básico ---- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: var(--cream);
-            color: var(--carbon);
-            font-family: 'DM Sans', sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-
-        /* ---- Navegación ---- */
-        nav {
-            background-color: var(--navy);
-            padding: 16px 32px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        nav a.logo {
-            color: var(--yellow);
-            font-family: 'Fraunces', serif;
-            font-size: 20px;
-            font-weight: 700;
-            text-decoration: none;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 24px;
-        }
-
-        nav ul li a {
-            color: var(--cream);
-            text-decoration: none;
-            font-size: 15px;
-        }
-
-        nav ul li a:hover {
-            color: var(--yellow);
-        }
-
-        /* ---- Contenido principal ---- */
-        main {
-            max-width: 860px;
-            margin: 0 auto;
-            padding: 48px 24px;
-        }
-
-        /* Badge del servicio */
-        .badge {
-            display: inline-block;
-            background-color: var(--taxi-blue);
-            color: white;
-            font-size: 13px;
-            font-weight: 500;
-            padding: 4px 12px;
-            border-radius: 4px;
-            margin-bottom: 16px;
-            letter-spacing: 0.05em;
-        }
-
-        /* Título principal */
-        h1 {
-            font-family: 'Fraunces', serif;
-            font-size: 42px;
-            font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 16px;
-        }
-
-        /* Bajada introductoria */
-        .intro {
-            font-size: 18px;
-            color: var(--carbon);
-            margin-bottom: 48px;
-            max-width: 680px;
-            border-bottom: 2px solid var(--concrete);
-            padding-bottom: 32px;
-        }
-
-        /* Secciones */
-        section {
-            margin-bottom: 48px;
-        }
-
-        h2 {
-            font-family: 'Fraunces', serif;
-            font-size: 26px;
-            color: var(--navy);
-            margin-bottom: 16px;
-        }
-
-        p {
-            margin-bottom: 12px;
-        }
-
-        /* Listas */
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        ul li {
-            padding: 10px 0;
-            border-bottom: 1px solid var(--concrete);
-            padding-left: 16px;
-        }
-
-        ul li::before {
-            content: "→";
-            color: var(--taxi-blue);
-            font-weight: bold;
-            margin-right: 8px;
-        }
-
-        /* Tabla de horarios/tarifas */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 12px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 14px;
-        }
-
-        th {
-            background-color: var(--navy);
-            color: var(--cream);
-            padding: 10px 14px;
-            text-align: left;
-        }
-
-        td {
-            padding: 10px 14px;
-            border-bottom: 1px solid var(--concrete);
-        }
-
-        tr:hover {
-            background-color: var(--concrete);
-        }
-
-        /* Alerta informativa */
-        .alerta {
-            background-color: #fff8e6;
-            border-left: 4px solid var(--yellow);
-            padding: 14px 18px;
-            margin-top: 16px;
-            font-size: 15px;
-        }
-
-        /* ---- Footer ---- */
-        footer {
-            background-color: var(--navy);
-            color: var(--cream);
-            text-align: center;
-            padding: 24px;
-            font-size: 14px;
-            margin-top: 64px;
-        }
-
-        footer a {
-            color: var(--yellow);
-            text-decoration: none;
-        }
-    </style>
+    <title>Taxis y Remises — Estación Lacroze</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
-    <!-- Navegación -->
-    <nav>
-        <a class="logo" href="../index.html">Estación Lacroze</a>
-        <ul>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../servicios.html">Servicios</a></li>
-            <li><a href="../contacto.html">Contacto</a></li>
-        </ul>
-    </nav>
+    <header>
+        <a class="logo" href="../index.html">
+            <img src="../img/logo.svg" alt="Estación Lacroze">
+            <span>Estación<br>Lacroze</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../servicios.html" class="active">Servicios</a></li>
+                <li><a href="../consulta-viajes.html">Consultar Viaje</a></li>
+                <li><a href="../servicios-terminal.html">Terminal</a></li>
+                <li><a href="../mapa.html">Mapa</a></li>
+                <li><a href="../contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Contenido principal -->
+    <div class="page-hero">
+        <span class="line-badge">Taxis y Remises · Servicio privado</span>
+        <h1>Taxis y <em>Remises</em></h1>
+        <p>Paradas oficiales disponibles las 24 horas del día. Una opción cómoda y segura para completar o iniciar tu viaje desde la estación.</p>
+        <div class="stats-row">
+            <div class="stat-item"><strong>3</strong><span>Paradas en el predio</span></div>
+            <div class="stat-item"><strong>24 hs</strong><span>Disponibilidad</span></div>
+            <div class="stat-item"><strong>365</strong><span>Días al año</span></div>
+            <div class="stat-item"><strong>4</strong><span>Apps disponibles</span></div>
+        </div>
+    </div>
+
     <main>
 
-        <!-- Encabezado del servicio -->
-        <span class="badge">Taxis y Remises · Servicio privado</span>
-        <h1>Taxis y Remises</h1>
-        <p class="intro">
-            La Estación Federico Lacroze cuenta con paradas oficiales de taxis y remises disponibles las 24 horas del día. Son una opción cómoda y segura para completar o iniciar tu viaje desde el centro de transporte.
-        </p>
+        <section class="seccion">
+            <h2>¿Qué es el Servicio?</h2>
+            <div class="content-sidebar">
+                <div>
+                    <p>Los taxis y remises son vehículos de transporte privado que operan bajo habilitación del Gobierno de la Ciudad de Buenos Aires. A diferencia de los colectivos o el subte, ofrecen un servicio puerta a puerta, sin paradas intermedias.</p>
+                    <p>La diferencia principal es que los <strong>taxis</strong> pueden tomarse directamente en la parada o calle, mientras que los <strong>remises</strong> se contratan por teléfono o aplicación con precio cerrado antes del viaje.</p>
+                </div>
 
-        <!-- Qué es el servicio -->
-        <section>
-            <h2>¿Qué es el servicio?</h2>
-            <p>
-                Los taxis y remises son vehículos de transporte privado que operan bajo habilitación del Gobierno de la Ciudad de Buenos Aires. A diferencia de los colectivos o el subte, ofrecen un servicio puerta a puerta, sin paradas intermedias.
-            </p>
-            <p>
-                La diferencia principal entre ambos es que los <strong>taxis</strong> pueden tomarse directamente en la parada o calle, mientras que los <strong>remises</strong> generalmente se contratan por teléfono o aplicación con precio cerrado antes del viaje.
-            </p>
+                <div class="info-table-wrap">
+                    <h3>Comparativa</h3>
+                    <table class="info-table">
+                        <tr><td>Taxis</td><td>Parada directa · taxímetro</td></tr>
+                        <tr><td>Remises</td><td>Precio cerrado · por app</td></tr>
+                        <tr><td>Habilitación</td><td>Gobierno de la Ciudad</td></tr>
+                        <tr><td>Horario</td><td>00:00 – 23:59 todos los días</td></tr>
+                        <tr><td>Tarjeta</td><td>Débito / crédito aceptado</td></tr>
+                    </table>
+                </div>
+            </div>
         </section>
 
-        <!-- Dónde encontrarlos -->
-        <section>
-            <h2>Dónde encontrarlos</h2>
-            <p>Las paradas se encuentran en las siguientes salidas de la estación:</p>
-            <ul>
-                <li>Parada principal sobre Avenida Federico Lacroze (frente a la entrada)</li>
-                <li>Parada secundaria sobre Avenida Álvarez Thomas</li>
-                <li>Remisería habilitada en la galería interna de la estación</li>
-            </ul>
+        <section class="seccion">
+            <h2>Dónde Encontrarlos</h2>
+            <p style="margin-bottom: 1rem;">Las paradas se encuentran en las siguientes salidas de la estación:</p>
+
+            <div class="formas-pago">
+                <ul>
+                    <li><strong>Parada principal</strong> <span>Sobre Avenida Federico Lacroze, frente a la entrada principal</span></li>
+                    <li><strong>Parada secundaria</strong> <span>Sobre Avenida Álvarez Thomas, acceso norte</span></li>
+                    <li><strong>Remisería habilitada</strong> <span>En la galería interna de la estación · precio cerrado</span></li>
+                </ul>
+            </div>
+
             <div class="alerta">
                 <strong>Importante:</strong> Utilizá siempre taxis con licencia oficial (chapas amarillas y negras) o remises de agencias habilitadas. Evitá los viajes no autorizados ofrecidos dentro de la estación.
             </div>
         </section>
 
-        <!-- Horarios -->
-        <section>
-            <h2>Horarios</h2>
-            <p>El servicio de taxis y remises está disponible las 24 horas del día, los 365 días del año.</p>
-            <table>
-                <tr>
-                    <th>Día</th>
-                    <th>Disponibilidad</th>
-                    <th>Demanda estimada</th>
-                </tr>
-                <tr>
-                    <td>Lunes a viernes</td>
-                    <td>00:00 – 23:59</td>
-                    <td>Alta en horarios pico (7–9 hs / 17–20 hs)</td>
-                </tr>
-                <tr>
-                    <td>Sábados</td>
-                    <td>00:00 – 23:59</td>
-                    <td>Media</td>
-                </tr>
-                <tr>
-                    <td>Domingos y feriados</td>
-                    <td>00:00 – 23:59</td>
-                    <td>Baja</td>
-                </tr>
-            </table>
+        <section class="seccion">
+            <h2>Horarios y Demanda</h2>
+            <div class="table-scroll">
+                <table class="tabla-datos">
+                    <thead>
+                        <tr>
+                            <th>Día</th>
+                            <th>Disponibilidad</th>
+                            <th>Demanda estimada</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Lunes a viernes</td><td>00:00 – 23:59</td><td>Alta en hora pico (7–9 hs / 17–20 hs)</td></tr>
+                        <tr><td>Sábados</td><td>00:00 – 23:59</td><td>Media</td></tr>
+                        <tr><td>Domingos y feriados</td><td>00:00 – 23:59</td><td>Baja</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
-        <!-- Tarifas -->
-        <section>
+        <section class="seccion">
             <h2>Tarifas</h2>
-            <p>Las tarifas de los taxis están reguladas por el Gobierno de la Ciudad. El taxímetro indica el costo del viaje en tiempo real.</p>
-            <table>
-                <tr>
-                    <th>Concepto</th>
-                    <th>Valor aproximado</th>
-                </tr>
-                <tr>
-                    <td>Bajada de bandera</td>
-                    <td>$ 950</td>
-                </tr>
-                <tr>
-                    <td>Por kilómetro recorrido</td>
-                    <td>$ 480 / km</td>
-                </tr>
-                <tr>
-                    <td>Por minuto detenido</td>
-                    <td>$ 120 / min</td>
-                </tr>
-                <tr>
-                    <td>Tarifa nocturna (21–06 hs)</td>
-                    <td>+20% sobre tarifa diurna</td>
-                </tr>
-            </table>
+            <p style="margin-bottom: 1rem;">Las tarifas de los taxis están reguladas por el Gobierno de la Ciudad. El taxímetro indica el costo del viaje en tiempo real.</p>
+            <div class="table-scroll">
+                <table class="tabla-datos">
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Valor aproximado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Bajada de bandera</td><td>$ 950</td></tr>
+                        <tr><td>Por kilómetro recorrido</td><td>$ 480 / km</td></tr>
+                        <tr><td>Por minuto detenido</td><td>$ 120 / min</td></tr>
+                        <tr><td>Tarifa nocturna (21–06 hs)</td><td>+20% sobre tarifa diurna</td></tr>
+                    </tbody>
+                </table>
+            </div>
             <div class="alerta">
                 Los valores son orientativos. Las tarifas oficiales actualizadas se pueden consultar en la web del Gobierno de la Ciudad de Buenos Aires.
             </div>
         </section>
 
-        <!-- Cómo pagar -->
-        <section>
-            <h2>Formas de pago</h2>
-            <ul>
-                <li>Efectivo (pesos argentinos)</li>
-                <li>Tarjeta de crédito y débito (la mayoría de los taxis lo acepta)</li>
-                <li>Mercado Pago y otras billeteras virtuales</li>
-                <li>Precio cerrado por app (en el caso de remises)</li>
-            </ul>
+        <section class="seccion">
+            <h2>Formas de Pago</h2>
+            <div class="formas-pago">
+                <ul>
+                    <li><strong>Efectivo</strong> <span>Pesos argentinos, siempre aceptado</span></li>
+                    <li><strong>Tarjeta de crédito y débito</strong> <span>La mayoría de los taxis lo acepta</span></li>
+                    <li><strong>Billeteras virtuales</strong> <span>Mercado Pago y otras apps con QR</span></li>
+                    <li><strong>Precio cerrado por app</strong> <span>En el caso de remises contratados digitalmente</span></li>
+                </ul>
+            </div>
         </section>
 
-        <!-- Apps recomendadas -->
-        <section>
-            <h2>Aplicaciones disponibles</h2>
-            <p>Para pedir un taxi o remis desde tu celular podés usar:</p>
-            <ul>
-                <li>BA Taxi — app oficial del Gobierno de la Ciudad</li>
-                <li>Uber — servicio de transporte privado por app</li>
-                <li>Cabify — alternativa con precio fijo antes del viaje</li>
-                <li>inDriver — podés proponer el precio del viaje</li>
-            </ul>
+        <section class="seccion">
+            <h2>Aplicaciones Disponibles</h2>
+            <p style="margin-bottom: 1rem;">Para pedir un taxi o remis desde el celular:</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>BA Taxi</h3>
+                    <ul>
+                        <li>App oficial del Gobierno de la Ciudad</li>
+                        <li>Taxis habilitados y verificados</li>
+                        <li>Seguimiento en tiempo real</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>Uber</h3>
+                    <ul>
+                        <li>Servicio de transporte privado</li>
+                        <li>Precio estimado antes del viaje</li>
+                        <li>Pago 100% digital</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>Cabify</h3>
+                    <ul>
+                        <li>Precio fijo antes de confirmar</li>
+                        <li>Sin sorpresas de tarifa</li>
+                        <li>Vehículos privados habilitados</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>inDriver</h3>
+                    <ul>
+                        <li>Podés proponer el precio del viaje</li>
+                        <li>El conductor acepta o contraoferta</li>
+                        <li>Pago en efectivo o digital</li>
+                    </ul>
+                </div>
+            </div>
         </section>
 
     </main>
 
-    <!-- Footer -->
     <footer>
-        Estación Lacroze © 2026 — <a href="../contacto.html">Contacto</a>
+        <p>Estación Lacroze &copy; 2026 &mdash; <a href="../contacto.html">Contacto</a></p>
     </footer>
 
 </body>

@@ -3,172 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colectivos - Estación Lacroze</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; color: #222; line-height: 1.6; }
-
-        header { background: #1B3A5C; color: #fff; padding: 18px 40px;
-            display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 4px solid #FFC72C; }
-        header .logo { font-size: 22px; font-weight: bold; color: #fff; text-decoration: none; }
-        header nav ul { list-style: none; display: flex; gap: 25px; }
-        header nav a { color: #fff; text-decoration: none; font-size: 15px; }
-        header nav a:hover { color: #FFC72C; }
-
-        .contenedor { max-width: 950px; margin: 0 auto; padding: 40px 30px; }
-        .eyebrow { color: #1B3A5C; font-size: 13px; text-transform: uppercase;
-            letter-spacing: 1.5px; margin-bottom: 10px; }
-        h1 { font-size: 42px; margin-bottom: 20px; color: #1B3A5C; }
-        .intro { font-size: 17px; color: #444; margin-bottom: 30px; max-width: 750px; }
-
-        section { margin-bottom: 50px; }
-        h2 { font-size: 26px; color: #1B3A5C; margin-bottom: 15px;
-            border-left: 5px solid #FFC72C; padding-left: 12px; }
-        section p { margin-bottom: 12px; }
-
-        .imagen { width: 100%; max-height: 420px; object-fit: cover;
-            margin: 15px 0; background: #eee; display: block; }
-
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 15px; }
-        table th, table td { border: 1px solid #ddd; padding: 10px 12px; text-align: left; }
-        table th { background: #1B3A5C; color: #fff; font-weight: normal; }
-        table tr:nth-child(even) { background: #f7f7f7; }
-
-        .lineas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
-        .lineas span { background: #FFC72C; color: #1B3A5C; font-weight: bold;
-            padding: 6px 14px; border-radius: 3px; font-size: 15px;
-            min-width: 45px; text-align: center; }
-
-        ul.simple { list-style: disc; margin-left: 22px; margin-top: 10px; }
-        ul.simple li { margin-bottom: 8px; }
-
-        footer { background: #1B3A5C; color: #fff; text-align: center;
-            padding: 20px; font-size: 14px; margin-top: 40px; }
-        footer a { color: #FFC72C; text-decoration: none; }
-
-        @media (max-width: 700px) {
-            header { flex-direction: column; gap: 10px; padding: 15px 20px; }
-            h1 { font-size: 32px; }
-            .contenedor { padding: 30px 20px; }
-        }
-    </style>
+    <title>Colectivos — Estación Lacroze</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
     <header>
-        <a href="../index.html" class="logo">Estación Lacroze</a>
+        <a href="../index.html" class="logo">
+            <img src="../img/logo.svg" alt="Estación Lacroze">
+            <span>Estación<br>Lacroze</span>
+        </a>
         <nav>
             <ul>
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="../servicios.html">Servicios</a></li>
+                <li><a href="../servicios.html" class="active">Servicios</a></li>
+                <li><a href="../consulta-viajes.html">Consultar Viaje</a></li>
+                <li><a href="../servicios-terminal.html">Terminal</a></li>
+                <li><a href="../mapa.html">Mapa</a></li>
                 <li><a href="../contacto.html">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="contenedor">
+    <div class="page-hero">
+        <span class="line-badge">Colectivos · Urbano e Interurbano</span>
+        <h1>Terminal de <em>Colectivos</em></h1>
+        <p>La terminal Lacroze concentra más de 20 líneas urbanas que funcionan las 24 horas, conectando Chacarita con el centro porteño, el conurbano norte y el oeste del Gran Buenos Aires.</p>
+        <div class="stats-row">
+            <div class="stat-item"><strong>20+</strong><span>Líneas urbanas</span></div>
+            <div class="stat-item"><strong>24 hs</strong><span>Disponibilidad</span></div>
+            <div class="stat-item"><strong>6 min</strong><span>Frecuencia mínima</span></div>
+            <div class="stat-item"><strong>SUBE</strong><span>Medio de pago</span></div>
+        </div>
+    </div>
 
-        <p class="eyebrow">Colectivos · Urbano e Interurbano</p>
-        <h1>Terminal de Colectivos Lacroze</h1>
+    <main>
 
-        <p class="intro">
-            La terminal de Lacroze concentra 20 líneas de colectivo urbanas y varios servicios
-            interurbanos. Funciona las 24 horas y es una de las paradas más importantes del barrio
-            de Chacarita, conectando la zona con el centro porteño, el conurbano norte y el oeste
-            del Gran Buenos Aires.
-        </p>
+        <section class="seccion">
+            <h2>Líneas que paran en Lacroze</h2>
+            <div class="content-sidebar">
+                <div>
+                    <p>Son más de 20 líneas urbanas con parada o cabecera en la terminal. Cubren prácticamente toda la Ciudad de Buenos Aires y muchas zonas del conurbano. Además operan empresas de larga distancia como Chevallier, Vía Bariloche, Crucero del Norte y Flecha Bus.</p>
 
-        <img src="../img/terminal.jpg" alt="Vista aérea de la terminal Lacroze" class="imagen">
+                    <div class="line-chips" aria-label="Líneas de colectivos">
+                        <span class="line-chip">19</span>
+                        <span class="line-chip">39</span>
+                        <span class="line-chip">43</span>
+                        <span class="line-chip">44</span>
+                        <span class="line-chip">47</span>
+                        <span class="line-chip">63</span>
+                        <span class="line-chip">65</span>
+                        <span class="line-chip">71</span>
+                        <span class="line-chip">76</span>
+                        <span class="line-chip">78</span>
+                        <span class="line-chip">87</span>
+                        <span class="line-chip">90</span>
+                        <span class="line-chip">93</span>
+                        <span class="line-chip">108</span>
+                        <span class="line-chip">111</span>
+                        <span class="line-chip">112</span>
+                        <span class="line-chip">123</span>
+                        <span class="line-chip">127</span>
+                        <span class="line-chip">176</span>
+                        <span class="line-chip">184</span>
+                    </div>
 
-        <section>
-            <h2>Las líneas que paran en Lacroze</h2>
-            <p>
-                Son 20 líneas urbanas las que tienen parada o cabecera en la terminal. Cubren
-                prácticamente toda la Ciudad de Buenos Aires y muchas zonas del conurbano. Además
-                operan empresas de larga distancia como Chevallier, Vía Bariloche, Crucero del
-                Norte y Flecha Bus.
-            </p>
+                    <p style="margin-top: 1.25rem;">La <strong>línea 65</strong> tiene cabecera en Lacroze y conecta con el sur de la ciudad pasando por Once y Plaza Miserere hasta Constitución. Funciona las 24 horas con frecuencia de 8 a 12 minutos durante el día.</p>
+                </div>
 
-            <div class="lineas">
-                <span>19</span><span>39</span><span>43</span><span>44</span><span>47</span>
-                <span>63</span><span>65</span><span>71</span><span>76</span><span>78</span>
-                <span>87</span><span>90</span><span>93</span><span>108</span><span>111</span>
-                <span>112</span><span>123</span><span>127</span><span>176</span><span>184</span>
+                <div>
+                    <img src="../img/recorrido-65.jpg" alt="Mapa del recorrido de la línea 65" style="width: 100%; display: block; border: 1px solid var(--line);">
+                    <p class="nota-mono" style="margin-top: 0.5rem;">Recorrido línea 65 · Lacroze → Constitución</p>
+                </div>
             </div>
-
-            <p style="margin-top: 20px;">
-                Como ejemplo, la <strong>línea 65</strong> tiene cabecera en Lacroze y conecta con
-                el sur de la ciudad pasando por Once y Plaza Miserere hasta Constitución. Funciona
-                las 24 horas con una frecuencia de 8 a 12 minutos durante el día.
-            </p>
-
-            <img src="../img/recorrido-65.jpg" alt="Mapa del recorrido de la línea 65" class="imagen">
         </section>
 
-        <section>
-            <h2>Mapa y ubicación</h2>
-            <p>
-                La terminal está sobre la avenida Federico Lacroze, al lado de la estación
-                Federico Lacroze de la Línea B del subte y de la cabecera del Tren Urquiza. Cada
-                línea tiene su parada identificada con el número correspondiente.
-            </p>
-
-            <img src="../img/mapa-paradas.jpg" alt="Mapa de paradas de la terminal" class="imagen">
-
-            <p>
-                <strong>Dirección:</strong> Av. Federico Lacroze y Av. Corrientes, CABA.<br>
-                <strong>Cómo llegar:</strong> combinando con el subte B o con el Tren Urquiza
-                (ambos paran en Federico Lacroze).
-            </p>
+        <section class="seccion">
+            <h2>Mapa y Ubicación</h2>
+            <div class="seccion-media">
+                <img src="../img/terminal.jpg" alt="Vista aérea de la terminal Lacroze">
+                <div class="texto">
+                    <p>La terminal está sobre la avenida Federico Lacroze, al lado de la estación de la Línea B del Subte y de la cabecera del Tren Urquiza. Cada línea tiene su parada identificada con el número correspondiente.</p>
+                    <p><strong>Dirección:</strong> Av. Federico Lacroze y Av. Corrientes, Chacarita, CABA.</p>
+                    <p><strong>Cómo llegar:</strong> combinando con el Subte Línea B o con el Tren Urquiza, ambos con parada directa en Federico Lacroze.</p>
+                </div>
+            </div>
+            <div class="recorrido-img">
+                <img src="../img/mapa-paradas.jpg" alt="Mapa de paradas de la terminal">
+                <p>Distribución de paradas dentro del predio de la terminal. Cada andén está numerado y señalizado con la línea correspondiente.</p>
+            </div>
         </section>
 
-        <section>
-            <h2>Horarios y frecuencia</h2>
-            <p>Frecuencia aproximada de algunas líneas:</p>
-
-            <table>
-                <tr><th>Línea</th><th>Lunes a viernes</th><th>Fines de semana</th><th>Madrugada</th></tr>
-                <tr><td>39</td><td>Cada 6 min</td><td>Cada 10 min</td><td>Cada 25 min</td></tr>
-                <tr><td>65</td><td>Cada 8 min</td><td>Cada 12 min</td><td>Cada 30 min</td></tr>
-                <tr><td>71</td><td>Cada 8 min</td><td>Cada 12 min</td><td>Cada 30 min</td></tr>
-                <tr><td>111</td><td>Cada 10 min</td><td>Cada 15 min</td><td>Cada 35 min</td></tr>
-                <tr><td>176</td><td>Cada 12 min</td><td>Cada 18 min</td><td>Cada 40 min</td></tr>
-            </table>
-
-            <p style="margin-top: 15px;">
-                Las salidas de larga distancia se concentran entre las 7:00 y las 23:00, con
-                algunas salidas nocturnas según el destino.
-            </p>
+        <section class="seccion">
+            <h2>Horarios y Frecuencia</h2>
+            <p style="margin-bottom: 1rem;">Frecuencia aproximada de las líneas principales que operan en la terminal:</p>
+            <div class="table-scroll">
+                <table class="tabla-datos">
+                    <thead>
+                        <tr>
+                            <th>Línea</th>
+                            <th>Lunes a viernes</th>
+                            <th>Fines de semana</th>
+                            <th>Madrugada</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>39</td><td>Cada 6 min</td><td>Cada 10 min</td><td>Cada 25 min</td></tr>
+                        <tr><td>65</td><td>Cada 8 min</td><td>Cada 12 min</td><td>Cada 30 min</td></tr>
+                        <tr><td>71</td><td>Cada 8 min</td><td>Cada 12 min</td><td>Cada 30 min</td></tr>
+                        <tr><td>111</td><td>Cada 10 min</td><td>Cada 15 min</td><td>Cada 35 min</td></tr>
+                        <tr><td>176</td><td>Cada 12 min</td><td>Cada 18 min</td><td>Cada 40 min</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="margin-top: 1rem; color: var(--ink-soft);">Las salidas de larga distancia se concentran entre las 7:00 y las 23:00, con algunas salidas nocturnas según el destino.</p>
         </section>
 
-        <section>
+        <section class="seccion">
             <h2>Accesibilidad</h2>
-            <p>La terminal y las unidades cuentan con varios criterios de accesibilidad:</p>
-            <ul class="simple">
-                <li>Rampas en plataformas y veredas.</li>
-                <li>Espacios reservados dentro de los coches para sillas de ruedas.</li>
-                <li>Asientos prioritarios para personas mayores y embarazadas.</li>
-                <li>Señalización con contraste claro y tipografía legible.</li>
-                <li>Anuncios sonoros de paradas en las unidades nuevas.</li>
-            </ul>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>En la Terminal</h3>
+                    <ul>
+                        <li>Rampas en plataformas y veredas</li>
+                        <li>Señalización con contraste claro</li>
+                        <li>Tipografía legible en carteles</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>En los Coches</h3>
+                    <ul>
+                        <li>Espacios reservados para silla de ruedas</li>
+                        <li>Asientos prioritarios para mayores y embarazadas</li>
+                        <li>Anuncios sonoros de paradas (unidades nuevas)</li>
+                    </ul>
+                </div>
+            </div>
         </section>
 
-        <section>
-            <h2>Formas de pago</h2>
-            <p>El boleto se paga con:</p>
-            <ul class="simple">
-                <li><strong>SUBE</strong> — la tarjeta recargable, válida en todo el AMBA.</li>
-                <li><strong>SUBE Digital</strong> — desde el celular con NFC.</li>
-                <li><strong>Tarjeta contactless</strong> — débito o crédito directo en el molinete.</li>
-                <li><strong>Billeteras virtuales</strong> — Mercado Pago, Ualá y otras con NFC.</li>
-            </ul>
+        <section class="seccion">
+            <h2>Formas de Pago</h2>
+            <div class="formas-pago">
+                <ul>
+                    <li><strong>SUBE</strong> <span>Tarjeta recargable, válida en todo el AMBA</span></li>
+                    <li><strong>SUBE Digital</strong> <span>Desde el celular con chip NFC</span></li>
+                    <li><strong>Tarjeta contactless</strong> <span>Débito o crédito directamente en el molinete</span></li>
+                    <li><strong>Billeteras virtuales</strong> <span>Mercado Pago, Ualá y otras con NFC</span></li>
+                </ul>
+            </div>
         </section>
 
     </main>
 
     <footer>
-        Estación Lacroze © 2026 — <a href="../contacto.html">Contacto</a>
+        <p>Estación Lacroze &copy; 2026 &mdash; <a href="../contacto.html">Contacto</a></p>
     </footer>
 
 </body>

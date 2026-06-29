@@ -3,483 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Línea Urquiza</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 16px;
-            color: #222;
-            background: #fff;
-        }
-
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        p  { line-height: 1.7; color: #444; }
-        h2 { font-size: 32px; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; border-left: 5px solid #107dc0; padding-left: 14px; }
-        h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: #107dc0; }
-
-        .subtitulo { font-size: 14px; color: #888; margin-bottom: 30px; padding-left: 19px; }
-
-        header {
-            background: #1a1a1a;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 40px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo { display: flex; align-items: center; gap: 10px; }
-
-        .logo-u {
-            background: #107dc0;
-            color: #fff;
-            font-size: 20px;
-            font-weight: 800;
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo-texto { color: #fff; font-size: 18px; font-weight: 800; }
-
-        header nav a {
-            color: #aaa;
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-left: 20px;
-            transition: color 0.2s;
-        }
-
-        header nav a:hover { color: #107dc0; }
-
-        .hero {
-            background: #1a1a1a;
-            color: #fff;
-            text-align: center;
-            padding: 90px 40px 70px;
-        }
-
-        .hero h1 { font-size: 70px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; }
-        .hero h1 span { color: #107dc0; }
-        .hero > p  { font-size: 17px; color: #aaa; margin-bottom: 40px; }
-
-        .hero-datos { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
-
-        .dato {
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 10px;
-            padding: 18px 26px;
-            min-width: 120px;
-        }
-
-        .dato strong { display: block; font-size: 26px; font-weight: 800; }
-        .dato span   { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
-
-        .seccion { padding: 70px 40px; max-width: 1100px; margin: 0 auto; }
-
-        .fondo-oscuro {
-            background: #1e1e1e;
-            max-width: 100%;
-            padding: 70px 40px;
-        }
-
-        .fondo-crema {
-            background: #f7f3ee;
-            max-width: 100%;
-            padding: 70px 40px;
-        }
-
-        .fondo-oscuro > *, .fondo-crema > * { max-width: 1100px; margin-left: auto; margin-right: auto; }
-        .fondo-oscuro h2 { color: #fff; }
-        .fondo-oscuro .subtitulo { color: #666; }
-
-        .dos-columnas { display: flex; gap: 30px; }
-        .dos-columnas > * { flex: 1; }
-
-        .tres-columnas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-
-        .tarjeta {
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 22px;
-            transition: border-color 0.2s;
-        }
-
-        .tarjeta:hover { border-color: #107dc0; }
-
-        .tarjeta ul li {
-            font-size: 14px;
-            color: #555;
-            padding: 4px 0 4px 16px;
-            position: relative;
-        }
-
-        .tarjeta ul li::before { content: '›'; color: #107dc0; position: absolute; left: 0; font-weight: 700; }
-
-        .tarjeta p { font-size: 14px; color: #666; margin-bottom: 10px; }
-
-        .centro { text-align: center; }
-
-        .icono { font-size: 30px; margin-bottom: 10px; display: block; }
-
-        .frecuencias { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
-        .frecuencias .tarjeta { flex: 1; min-width: 160px; }
-        .frecuencias strong { display: block; font-size: 18px; color: #107dc0; margin-bottom: 4px; }
-        .frecuencias h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 6px; }
-        .frecuencias p { font-size: 12px; color: #888; }
-
-        .lista-icono li { padding: 8px 10px; margin-bottom: 6px; background: #f7f3ee; border-left: 4px solid #107dc0; border-radius: 0 6px 6px 0; font-size: 14px; color: #444; }
-
-        .ficha { background: #1a1a1a; border-radius: 10px; overflow: hidden; }
-        .ficha h3 { background: #107dc0; color: #fff; padding: 12px 18px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
-
-        .ficha table { width: 100%; border-collapse: collapse; }
-        .ficha td { padding: 9px 18px; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .ficha tr:last-child td { border-bottom: none; }
-        .ficha td:first-child { color: #888; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
-        .ficha td:last-child { color: #fff; }
-
-
-        .estaciones { border-left: 3px solid #107dc0; padding-left: 24px; }
-
-        .estacion { display: flex; align-items: flex-start; gap: 14px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .estacion:last-child { border-bottom: none; }
-
-        .estacion span { color: #555; font-size: 20px; line-height: 1; flex-shrink: 0; margin-top: 2px; }
-        .estacion.terminal span { color: #107dc0; font-size: 18px; }
-
-        .estacion strong { display: block; color: #fff; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .estacion.terminal strong { color: #107dc0; font-size: 15px; }
-        .estacion small { color: #666; font-size: 12px; }
-
-
-        /* --- TABLA HORARIOS --- */
-        .tabla-scroll { overflow-x: auto; border-radius: 10px; border: 2px solid #ddd; }
-
-        .tabla-horarios { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 500px; }
-
-        .tabla-horarios thead tr { background: #1a1a1a; color: #fff; }
-        .tabla-horarios th { padding: 11px 14px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-align: left; }
-        .tabla-horarios th:first-child { background: #107dc0; }
-
-        .tabla-horarios td { padding: 9px 14px; color: #444; border-bottom: 1px solid #eee; }
-        .tabla-horarios td:first-child { font-weight: 700; color: #222; }
-        .tabla-horarios tbody tr:hover { background: #fef8f8; }
-
-        .tabla-horarios tr.pico { background: #fff0f0; }
-        .tabla-horarios tr.pico td { color: #107dc0; font-weight: 600; }
-
-        .aviso {
-            margin-top: 30px;
-            background: #1a1a1a;
-            color: rgba(255,255,255,0.7);
-            padding: 18px 24px;
-            border-radius: 10px;
-            border-left: 5px solid #107dc0;
-            font-size: 14px;
-            line-height: 1.7;
-        }
-
-        .aviso strong { color: #fff; }
-
-        footer {
-            background: #111;
-            color: rgba(255,255,255,0.4);
-            text-align: center;
-            padding: 40px;
-            font-size: 13px;
-            line-height: 2;
-        }
-
-        footer nav a { color: rgba(255,255,255,0.4); margin: 0 10px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
-        footer nav a:hover { color: #107dc0; }
-        footer a { color: rgba(255,255,255,0.4); }
-        footer a:hover { color: #107dc0; }
-
-        @media (max-width: 800px) {
-            .dos-columnas, .tres-columnas { flex-direction: column; display: flex; }
-            .hero h1 { font-size: 44px; }
-            .seccion { padding: 50px 20px; }
-            .fondo-oscuro, .fondo-crema { padding: 50px 20px; }
-            header { padding: 14px 20px; }
-            header nav { display: none; }
-        }
-    </style>
+    <title>Tren Urquiza — Estación Lacroze</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+
     <header>
-        <div class="logo">
-            <span class="logo-u">U</span>
-            <span class="logo-texto">Línea Urquiza</span>
-        </div>
+        <a class="logo" href="../index.html">
+            <img src="../img/logo.svg" alt="Estación Lacroze">
+            <span>Estación<br>Lacroze</span>
+        </a>
         <nav>
-            <a href="#informacion">Información</a>
-            <a href="#estaciones">Estaciones</a>
-            <a href="#mapa">Mapa</a>
-            <a href="#horarios">Horarios</a>
-            <a href="#accesibilidad">Accesibilidad</a>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../servicios.html" class="active">Servicios</a></li>
+                <li><a href="../consulta-viajes.html">Consultar Viaje</a></li>
+                <li><a href="../servicios-terminal.html">Terminal</a></li>
+                <li><a href="../mapa.html">Mapa</a></li>
+                <li><a href="../contacto.html">Contacto</a></li>
+            </ul>
         </nav>
     </header>
-    <section class="hero">
-        <h1>Línea <span>Urquiza</span></h1>
-        <p>Conectando Chacarita con el noroeste del Gran Buenos Aires</p>
-        <div class="hero-datos">
-            <div class="dato"><strong>23</strong><span>Estaciones</span></div>
-            <div class="dato"><strong>25,9 km</strong><span>Recorrido</span></div>
-            <div class="dato"><strong>~48 min</strong><span>Viaje total</span></div>
-            <div class="dato"><strong>100.000</strong><span>Pasajeros/día</span></div>
+
+    <div class="page-hero">
+        <span class="line-badge">Tren Urquiza · Metrovías S.A.</span>
+        <h1>Línea <em>Urquiza</em></h1>
+        <p>Tren eléctrico suburbano que conecta Chacarita con el noroeste del Gran Buenos Aires. Única línea de trocha estándar del sistema metropolitano.</p>
+        <div class="stats-row">
+            <div class="stat-item"><strong>23</strong><span>Estaciones</span></div>
+            <div class="stat-item"><strong>25,9 km</strong><span>Recorrido</span></div>
+            <div class="stat-item"><strong>~48 min</strong><span>Viaje total</span></div>
+            <div class="stat-item"><strong>100.000</strong><span>Pasajeros / día</span></div>
         </div>
-    </section>
-    <section id="informacion" class="seccion">
-        <h2>Información del Servicio</h2>
+    </div>
 
-        <div class="dos-columnas">
-            <div>
-                <p>La <strong>Línea Urquiza</strong> es un tren eléctrico suburbano operado por <strong>Metrovías S.A.</strong>
-                Es la única línea de trocha estándar del sistema metropolitano de Buenos Aires.</p>
+    <main>
 
-                <p>Sale desde <strong>Federico Lacroze</strong> (Chacarita, CABA) y llega a
-                <strong>General Lemos</strong> (San Miguel), recorriendo 25,9 km en aproximadamente 48 minutos.</p>
+        <section class="seccion" id="informacion">
+            <h2>Información del Servicio</h2>
+            <div class="content-sidebar">
+                <div>
+                    <p>La <strong>Línea Urquiza</strong> es operada por <strong>Metrovías S.A.</strong> Sale desde <strong>Federico Lacroze</strong> (Chacarita, CABA) y llega a <strong>General Lemos</strong> (San Miguel), recorriendo 25,9 km en aproximadamente 48 minutos.</p>
+                    <p>Es la única línea de trocha estándar del sistema metropolitano de Buenos Aires, lo que la distingue técnicamente del resto de los ramales suburbanos.</p>
 
-                <h3>Destinos principales</h3>
-                <ul class="lista-icono">
-                    <li><strong>Federico Lacroze</strong> – Terminal sur. Combinación con Línea B de Subte.</li>
-                    <li><strong>General San Martín</strong> – Zona comercial y residencial.</li>
-                    <li><strong>Hurlingham / Tres de Febrero</strong> – Centros educativos y de salud.</li>
-                    <li><strong>General Lemos</strong> – Terminal norte. San Miguel.</li>
-                </ul>
+                    <div class="formas-pago" style="margin-top: 1.5rem;">
+                        <ul>
+                            <li><strong>Federico Lacroze</strong> <span>Terminal sur · Combinación con Línea B de Subte · Rampa de acceso</span></li>
+                            <li><strong>General San Martín</strong> <span>Zona comercial y residencial</span></li>
+                            <li><strong>Hurlingham / Tres de Febrero</strong> <span>Centros educativos y de salud</span></li>
+                            <li><strong>General Lemos</strong> <span>Terminal norte · San Miguel, Prov. Buenos Aires</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-table-wrap">
+                    <h3>Ficha técnica</h3>
+                    <table class="info-table">
+                        <tr><td>Operador</td><td>Metrovías S.A.</td></tr>
+                        <tr><td>Tipo</td><td>Tren eléctrico suburbano</td></tr>
+                        <tr><td>Trocha</td><td>1.435 mm (estándar)</td></tr>
+                        <tr><td>Estaciones</td><td>23</td></tr>
+                        <tr><td>Distancia</td><td>25,9 km</td></tr>
+                        <tr><td>Duración</td><td>~48 minutos</td></tr>
+                        <tr><td>Tarifa SUBE</td><td>$280 – $450</td></tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="seccion" id="estaciones">
+            <h2>Estaciones</h2>
+            <p class="nota-mono" style="margin-top: 0; margin-bottom: 1rem;">23 paradas · Federico Lacroze → General Lemos</p>
+            <div class="paradas-list">
+                <div class="parada terminal"><strong>Federico Lacroze</strong> &mdash; km 0,0 · Chacarita, CABA · Combinación con Línea B de Subte</div>
+                <div class="parada">Artigas &mdash; km 1,4 · CABA</div>
+                <div class="parada">Pedro N. Arata &mdash; km 2,9 · CABA · Villa del Parque</div>
+                <div class="parada">Francisco Beiró &mdash; km 4,2 · CABA · Zona comercial</div>
+                <div class="parada">El Libertador &mdash; km 5,4 · CABA · Límite con GBA</div>
+                <div class="parada">Devoto &mdash; km 6,7 · Pdo. General San Martín · Rampa de acceso</div>
+                <div class="parada">Coronel F. Lynch &mdash; km 8,1 · Pdo. General San Martín</div>
+                <div class="parada">Francisco Moreno &mdash; km 9,3 · Pdo. General San Martín · Hospitales cercanos</div>
+                <div class="parada">Lourdes &mdash; km 10,5 · Pdo. General San Martín</div>
+                <div class="parada">Tropezón &mdash; km 11,8 · Pdo. General San Martín</div>
+                <div class="parada">J. M. Bosch &mdash; km 13,1 · Pdo. Tres de Febrero</div>
+                <div class="parada">Martín Coronado &mdash; km 14,4 · Pdo. Tres de Febrero · Acceso para movilidad reducida</div>
+                <div class="parada">Pablo Podestá &mdash; km 15,7 · Pdo. Tres de Febrero · Centro comercial y escuelas</div>
+                <div class="parada">Jorge Newbery &mdash; km 16,9 · Pdo. Tres de Febrero</div>
+                <div class="parada">Rubén Darío &mdash; km 18,0 · Pdo. Hurlingham</div>
+                <div class="parada">Ejército de los Andes &mdash; km 19,2 · Pdo. Hurlingham</div>
+                <div class="parada">J. B. de La Salle &mdash; km 20,1 · Pdo. Hurlingham</div>
+                <div class="parada">Sargento Barrufaldi &mdash; km 21,2 · Pdo. Malvinas Argentinas</div>
+                <div class="parada">Capitán Lozano &mdash; km 22,0 · Pdo. Malvinas Argentinas</div>
+                <div class="parada">Teniente Agneta &mdash; km 22,9 · Pdo. Malvinas Argentinas</div>
+                <div class="parada">Campo de Mayo &mdash; km 23,8 · Pdo. San Miguel</div>
+                <div class="parada">Sargento Cabral &mdash; km 24,9 · Pdo. San Miguel</div>
+                <div class="parada terminal"><strong>General Lemos</strong> &mdash; km 25,9 · San Miguel · Terminal norte · Estacionamiento · Rampa de acceso</div>
+            </div>
+        </section>
+
+        <section class="seccion" id="mapa">
+            <h2>Mapa y Ubicación</h2>
+            <p style="color: var(--muted); margin-bottom: 1rem; font-size: 0.9rem;">Recorrido completo · Lacroze → General Lemos</p>
+            <iframe
+                title="Mapa Línea Urquiza"
+                src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d105226.8!2d-58.59!3d-34.558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e3!4m5!1s0x95bcb592d3408bd3%3A0x2a0dbbb8a3a0c76a!2sEstaci%C3%B3n%20Federico%20Lacroze%2C%20Buenos%20Aires!3m2!1d-34.5869!2d-58.4558!4m5!1s0x95bc8f7e4d5c3b41%3A0xe83da2ffb1e67cdb!2sEstaci%C3%B3n%20General%20Lemos%2C%20San%20Miguel!3m2!1d-34.527!2d-58.7082!5e0!3m2!1ses!2sar"
+                width="100%" height="400"
+                style="border: 1px solid var(--line); display: block; margin-bottom: 1.5rem;"
+                allowfullscreen loading="lazy">
+            </iframe>
+
+            <div class="content-sidebar">
+                <div class="servicio-detalle" style="margin-top: 0;">
+                    <h2>Terminal Sur — Federico Lacroze</h2>
+                    <p style="color: var(--muted); font-size: 0.875rem; margin-bottom: 0.75rem;">Av. Federico Lacroze 4181, Chacarita, CABA</p>
+                    <div class="formas-pago" style="margin-top: 0; padding: 0; border: none; background: none;">
+                        <ul>
+                            <li>Combinación con Línea B de Subte</li>
+                            <li>Rampa para silla de ruedas</li>
+                            <li>Boleterías y recarga SUBE</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="servicio-detalle" style="margin-top: 0;">
+                    <h2>Terminal Norte — General Lemos</h2>
+                    <p style="color: var(--muted); font-size: 0.875rem; margin-bottom: 0.75rem;">Campo de Mayo, San Miguel, Prov. Buenos Aires</p>
+                    <div class="formas-pago" style="margin-top: 0; padding: 0; border: none; background: none;">
+                        <ul>
+                            <li>Playa de estacionamiento</li>
+                            <li>Rampa de acceso</li>
+                            <li>Conexión con colectivos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="seccion" id="horarios">
+            <h2>Horarios del Servicio</h2>
+            <div class="freq-grid">
+                <div class="freq-card">
+                    <h4>Hora pico</h4>
+                    <strong>Cada 10–20 min</strong>
+                    <p>Lun–Vie 6:30–9:00 y 17:00–19:30</p>
+                </div>
+                <div class="freq-card">
+                    <h4>Valle</h4>
+                    <strong>Cada 30 min</strong>
+                    <p>Resto del día, días hábiles</p>
+                </div>
+                <div class="freq-card">
+                    <h4>Fin de semana</h4>
+                    <strong>Cada 30–40 min</strong>
+                    <p>Sábados, domingos y feriados</p>
+                </div>
+                <div class="freq-card">
+                    <h4>Horario diario</h4>
+                    <strong>5:00 – 23:59</strong>
+                    <p>Primer y último servicio</p>
+                </div>
             </div>
 
-            <div class="ficha">
-                <h3>Ficha técnica</h3>
-                <table>
-                    <tr><td>Operador</td><td>Metrovías S.A.</td></tr>
-                    <tr><td>Tipo</td><td>Tren eléctrico suburbano</td></tr>
-                    <tr><td>Trocha</td><td>1.435 mm (estándar)</td></tr>
-                    <tr><td>Estaciones</td><td>23</td></tr>
-                    <tr><td>Distancia</td><td>25,9 km</td></tr>
-                    <tr><td>Duración</td><td>~48 minutos</td></tr>
-                    <tr><td>Tarifa SUBE</td><td>$280 – $450</td></tr>
+            <h3 style="font-family: var(--serif); color: var(--navy); margin: 2rem 0 0.5rem; font-size: 1.1rem; font-weight: 500;">Días hábiles · Lacroze → General Lemos</h3>
+            <div class="table-scroll">
+                <table class="tabla-datos">
+                    <thead>
+                        <tr>
+                            <th>Lacroze</th>
+                            <th>El Libertador</th>
+                            <th>Martín Coronado</th>
+                            <th>Pablo Podestá</th>
+                            <th>Ejto. Andes</th>
+                            <th>Gral. Lemos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>05:10</td><td>05:22</td><td>05:34</td><td>05:38</td><td>05:46</td><td>05:58</td></tr>
+                        <tr><td>05:40</td><td>05:52</td><td>06:04</td><td>06:08</td><td>06:16</td><td>06:28</td></tr>
+                        <tr class="pico"><td>06:30</td><td>06:42</td><td>06:54</td><td>06:58</td><td>07:06</td><td>07:18</td></tr>
+                        <tr class="pico"><td>07:10</td><td>07:22</td><td>07:34</td><td>07:38</td><td>07:46</td><td>07:58</td></tr>
+                        <tr class="pico"><td>07:50</td><td>08:02</td><td>08:14</td><td>08:18</td><td>08:26</td><td>08:38</td></tr>
+                        <tr><td>09:00</td><td>09:12</td><td>09:24</td><td>09:28</td><td>09:36</td><td>09:48</td></tr>
+                        <tr><td>12:00</td><td>12:12</td><td>12:24</td><td>12:28</td><td>12:36</td><td>12:48</td></tr>
+                        <tr class="pico"><td>17:30</td><td>17:42</td><td>17:54</td><td>17:58</td><td>18:06</td><td>18:18</td></tr>
+                        <tr class="pico"><td>18:10</td><td>18:22</td><td>18:34</td><td>18:38</td><td>18:46</td><td>18:58</td></tr>
+                        <tr><td>20:00</td><td>20:12</td><td>20:24</td><td>20:28</td><td>20:36</td><td>20:48</td></tr>
+                        <tr><td>22:30</td><td>22:42</td><td>22:54</td><td>22:58</td><td>23:06</td><td>23:18</td></tr>
+                    </tbody>
                 </table>
             </div>
-        </div>
-    </section>
-    <section id="estaciones" class="seccion fondo-oscuro">
-        <h2>Estaciones</h2>
-        <p class="subtitulo">23 paradas · Federico Lacroze → General Lemos</p>
+            <p class="nota-mono">Filas resaltadas = hora pico · Horarios aproximados · Verificar en metrovias.com.ar · 0800-555-1616</p>
+        </section>
 
-        <div class="estaciones">
-            <div class="estacion terminal"><span>●</span><div><strong>Federico Lacroze</strong><small>km 0,0 · Chacarita, CABA · Combinación con Línea B de Subte · Rampa de acceso</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>Artigas</strong><small>km 1,4 · CABA</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>Pedro N. Arata</strong><small>km 2,9 · CABA · Villa del Parque</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>Francisco Beiró</strong><small>km 4,2 · CABA · Zona comercial</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>El Libertador</strong><small>km 5,4 · CABA · Límite con GBA</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>Devoto</strong><small>km 6,7 · Pdo. General San Martín · Rampa de acceso</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>Coronel F. Lynch</strong><small>km 8,1 · Pdo. General San Martín</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>Francisco Moreno</strong><small>km 9,3 · Pdo. General San Martín · Hospitales cercanos</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>Lourdes</strong><small>km 10,5 · Pdo. General San Martín</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>Tropezón</strong><small>km 11,8 · Pdo. General San Martín</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>J. M. Bosch</strong><small>km 13,1 · Pdo. Tres de Febrero</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>Martín Coronado</strong><small>km 14,4 · Pdo. Tres de Febrero · Acceso para movilidad reducida</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>Pablo Podestá</strong><small>km 15,7 · Pdo. Tres de Febrero · Centro comercial y escuelas</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>Jorge Newbery</strong><small>km 16,9 · Pdo. Tres de Febrero</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>Rubén Darío</strong><small>km 18,0 · Pdo. Hurlingham</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>Ejército de los Andes</strong><small>km 19,2 · Pdo. Hurlingham</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>J. B. de La Salle</strong><small>km 20,1 · Pdo. Hurlingham</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>Sargento Barrufaldi</strong><small>km 21,2 · Pdo. Malvinas Argentinas</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>Capitán Lozano</strong><small>km 22,0 · Pdo. Malvinas Argentinas</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>Teniente Agneta</strong><small>km 22,9 · Pdo. Malvinas Argentinas</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>Campo de Mayo</strong><small>km 23,8 · Pdo. San Miguel</small></div></div>
-            <div class="estacion"><span>·</span><div><strong>Sargento Cabral</strong><small>km 24,9 · Pdo. San Miguel</small></div></div>
-            <div class="estacion terminal"><span>●</span><div><strong>General Lemos</strong><small>km 25,9 · San Miguel · Terminal norte · Estacionamiento · Rampa de acceso</small></div></div>
-        </div>
-    </section>
-    <section id="mapa" class="seccion">
-        <h2>Mapa y Ubicación</h2>
-        <p class="subtitulo">Recorrido completo de la línea</p>
+        <section class="seccion" id="accesibilidad">
+            <h2>Accesibilidad</h2>
+            <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 0;">Servicio inclusivo para todas las personas</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Movilidad Reducida</h3>
+                    <ul>
+                        <li>Rampas en estaciones principales</li>
+                        <li>Espacios para silla de ruedas</li>
+                        <li>Franjas podotáctiles en andenes</li>
+                        <li>Asientos preferenciales</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>Señalización</h3>
+                    <ul>
+                        <li>Cartelería de alto contraste</li>
+                        <li>Letras grandes y legibles</li>
+                        <li>Mapas en vagones y andenes</li>
+                        <li>Señalética de emergencia</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>Información Sonora</h3>
+                    <ul>
+                        <li>Anuncios de voz en vagones</li>
+                        <li>Alertas al cerrar puertas</li>
+                        <li>Altavoces para emergencias</li>
+                        <li>Pantallas con próxima parada</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>Instalaciones</h3>
+                    <ul>
+                        <li>Baños adaptados en terminales</li>
+                        <li>Pasillos amplios</li>
+                        <li>Mostrador bajo en boletería</li>
+                        <li>Máquinas SUBE accesibles</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>Atención al Viajero</h3>
+                    <ul>
+                        <li>Personal capacitado</li>
+                        <li>Línea gratuita: 0800-555-1616</li>
+                        <li>Descuentos SUBE especiales</li>
+                        <li>Acompañante gratuito con certificado</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>Sitio Web</h3>
+                    <ul>
+                        <li>Colores de alto contraste</li>
+                        <li>Tipografía legible (16px+)</li>
+                        <li>Navegación clara y ordenada</li>
+                        <li>Compatible con lectores de pantalla</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="alerta" style="margin-top: 1.5rem;">
+                Este sitio busca cumplir con la <strong>Ley 26.378</strong> y las pautas <strong>WCAG 2.1</strong> de accesibilidad web.
+            </div>
+        </section>
 
-        <iframe
-            title="Mapa Línea Urquiza"
-            src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d105226.8!2d-58.59!3d-34.558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e3!4m5!1s0x95bcb592d3408bd3%3A0x2a0dbbb8a3a0c76a!2sEstaci%C3%B3n%20Federico%20Lacroze%2C%20Buenos%20Aires!3m2!1d-34.5869!2d-58.4558!4m5!1s0x95bc8f7e4d5c3b41%3A0xe83da2ffb1e67cdb!2sEstaci%C3%B3n%20General%20Lemos%2C%20San%20Miguel!3m2!1d-34.527!2d-58.7082!5e0!3m2!1ses!2sar"
-            width="100%" height="420" style="border: 3px solid #139ce1; border-radius: 10px;" allowfullscreen loading="lazy">
-        </iframe>
-
-        <div class="dos-columnas" style="margin-top: 30px;">
-            <div class="tarjeta">
-                <h3>Terminal Sur – Federico Lacroze</h3>
-                <p>Av. Federico Lacroze 4181, Chacarita, CABA</p>
-                <ul class="lista-icono">
-                    <li>Combinación con Línea B de Subte</li>
-                    <li>Rampa para silla de ruedas</li>
-                    <li>Boleterías y recarga SUBE</li>
-                </ul>
-            </div>
-            <div class="tarjeta">
-                <h3>Terminal Norte – General Lemos</h3>
-                <p>Campo de Mayo, San Miguel, Prov. Buenos Aires</p>
-                <ul class="lista-icono">
-                    <li>Playa de estacionamiento</li>
-                    <li>Rampa de acceso</li>
-                    <li>Conexión con colectivos</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="horarios" class="seccion fondo-crema">
-        <h2>Horarios del Servicio</h2>
-        <p class="subtitulo">Verificar siempre en <strong>metrovias.com.ar</strong> · 0800-555-1616</p>
-
-        <div class="frecuencias">
-            <div class="tarjeta centro">
-                <span class="icono">🚉</span>
-                <h4>Hora pico</h4>
-                <strong>Cada 10–20 min</strong>
-                <p>Lun–Vie 6:30–9:00 y 17:00–19:30</p>
-            </div>
-            <div class="tarjeta centro">
-                <span class="icono">🕐</span>
-                <h4>Valle</h4>
-                <strong>Cada 30 min</strong>
-                <p>Resto del día, días hábiles</p>
-            </div>
-            <div class="tarjeta centro">
-                <span class="icono">📅</span>
-                <h4>Fin de semana</h4>
-                <strong>Cada 30–40 min</strong>
-                <p>Sábados, domingos y feriados</p>
-            </div>
-            <div class="tarjeta centro">
-                <span class="icono">☀️</span>
-                <h4>Horario diario</h4>
-                <strong>5:00 – 23:59</strong>
-                <p>Primer y último servicio</p>
-            </div>
-        </div>
-
-        <h3 style="margin-bottom: 12px;">Días hábiles · Lacroze → General Lemos</h3>
-        <div class="tabla-scroll">
-            <table class="tabla-horarios">
-                <thead>
-                    <tr>
-                        <th>Lacroze</th>
-                        <th>El Libertador</th>
-                        <th>Martín Coronado</th>
-                        <th>Pablo Podestá</th>
-                        <th>Ejto. Andes</th>
-                        <th>Gral. Lemos</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>05:10</td><td>05:22</td><td>05:34</td><td>05:38</td><td>05:46</td><td>05:58</td></tr>
-                    <tr><td>05:40</td><td>05:52</td><td>06:04</td><td>06:08</td><td>06:16</td><td>06:28</td></tr>
-                    <tr class="pico"><td>06:30</td><td>06:42</td><td>06:54</td><td>06:58</td><td>07:06</td><td>07:18</td></tr>
-                    <tr class="pico"><td>07:10</td><td>07:22</td><td>07:34</td><td>07:38</td><td>07:46</td><td>07:58</td></tr>
-                    <tr class="pico"><td>07:50</td><td>08:02</td><td>08:14</td><td>08:18</td><td>08:26</td><td>08:38</td></tr>
-                    <tr><td>09:00</td><td>09:12</td><td>09:24</td><td>09:28</td><td>09:36</td><td>09:48</td></tr>
-                    <tr><td>12:00</td><td>12:12</td><td>12:24</td><td>12:28</td><td>12:36</td><td>12:48</td></tr>
-                    <tr class="pico"><td>17:30</td><td>17:42</td><td>17:54</td><td>17:58</td><td>18:06</td><td>18:18</td></tr>
-                    <tr class="pico"><td>18:10</td><td>18:22</td><td>18:34</td><td>18:38</td><td>18:46</td><td>18:58</td></tr>
-                    <tr><td>20:00</td><td>20:12</td><td>20:24</td><td>20:28</td><td>20:36</td><td>20:48</td></tr>
-                    <tr><td>22:30</td><td>22:42</td><td>22:54</td><td>22:58</td><td>23:06</td><td>23:18</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <p style="font-size: 13px; color: #888; margin-top: 8px;">Horarios en negrita = hora pico · Horarios aproximados</p>
-    </section>
-
-    <section id="accesibilidad" class="seccion">
-        <h2>Accesibilidad</h2>
-        <p class="subtitulo">Servicio inclusivo para todas las personas</p>
-
-        <div class="tres-columnas">
-            <div class="tarjeta">
-                <h3>Movilidad Reducida</h3>
-                <ul>
-                    <li>Rampas en estaciones principales</li>
-                    <li>Espacios para silla de ruedas</li>
-                    <li>Franjas podotáctiles en andenes</li>
-                    <li>Asientos preferenciales</li>
-                </ul>
-            </div>
-            <div class="tarjeta">
-                <h3>Señalización</h3>
-                <ul>
-                    <li>Cartelería de alto contraste</li>
-                    <li>Letras grandes y legibles</li>
-                    <li>Mapas en vagones y andenes</li>
-                    <li>Señalética de emergencia</li>
-                </ul>
-            </div>
-            <div class="tarjeta">
-                <h3>Información Sonora</h3>
-                <ul>
-                    <li>Anuncios de voz en vagones</li>
-                    <li>Alertas al cerrar puertas</li>
-                    <li>Altavoces para emergencias</li>
-                    <li>Pantallas con próxima parada</li>
-                </ul>
-            </div>
-            <div class="tarjeta">
-                <h3>Instalaciones</h3>
-                <ul>
-                    <li>Baños adaptados en terminales</li>
-                    <li>Pasillos amplios</li>
-                    <li>Mostrador bajo en boletería</li>
-                    <li>Máquinas SUBE accesibles</li>
-                </ul>
-            </div>
-            <div class="tarjeta">
-                <h3>Sitio Web</h3>
-                <ul>
-                    <li>Colores de alto contraste</li>
-                    <li>Tipografía legible (16px+)</li>
-                    <li>Navegación clara y ordenada</li>
-                    <li>Compatible con lectores de pantalla</li>
-                </ul>
-            </div>
-            <div class="tarjeta">
-                <h3>Atención al Viajero</h3>
-                <ul>
-                    <li>Personal capacitado</li>
-                    <li>Línea gratuita: 0800-555-1616</li>
-                    <li>Descuentos SUBE especiales</li>
-                    <li>Acompañante gratuito con certificado</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="aviso">
-            Este sitio busca cumplir con la <strong>Ley 26.378</strong> y las pautas <strong>WCAG 2.1</strong> de accesibilidad web.
-        </div>
-    </section>
+    </main>
 
     <footer>
-        <p><strong>Línea Urquiza</strong> · Metrovías S.A.</p>
-        <nav>
-            <a href="#informacion">Información</a>
-            <a href="#estaciones">Estaciones</a>
-            <a href="#mapa">Mapa</a>
-            <a href="#horarios">Horarios</a>
-            <a href="#accesibilidad">Accesibilidad</a>
-        </nav>
-        <p>Sitio desarrollado por Tomás Rey Saavedra · Verificar horarios en <a href="https://metrovias.com.ar" target="_blank">metrovias.com.ar</a></p>
+        <p>Estación Lacroze &copy; 2026 &mdash; <a href="../contacto.html">Contacto</a></p>
     </footer>
 
 </body>
