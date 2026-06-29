@@ -3,28 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estación Lacroze - Subte Línea B</title>
+    <title>Subte Línea B — Estación Lacroze</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <style>
-        /* Overrides de acento para Línea B */
-        .seccion h2 {
-            border-bottom-color: #C8102E;
+        /* Acento rojo Línea B */
+        .seccion h2             { border-bottom-color: #C8102E; }
+        .formas-pago ul li      { border-left-color: #C8102E; }
+        .parada.linea-b::before { background: #C8102E; }
+        .line-badge.red         { background: #C8102E; }
+        .feature-card h3        { color: #C8102E; }
+
+        .map-real {
+            width: 100%;
+            height: 440px;
+            border: 0;
+            display: block;
+            border-radius: 6px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.10);
         }
-        .card {
-            border-top-color: #C8102E;
+        .access-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.25rem;
         }
-        .formas-pago ul li {
-            border-left-color: #C8102E;
+        .access-card {
+            background: var(--navy);
+            color: var(--cream);
+            padding: 1rem 1.1rem;
+            border-radius: 6px;
+            border-left: 3px solid #C8102E;
         }
-        .hero-eyebrow {
-            color: #C8102E;
+        .access-card .nota-mono { color: #C8102E; }
+        .access-card strong { display: block; margin: 0.3rem 0 0.2rem; font-size: 0.95rem; }
+        .access-card span { font-size: 0.82rem; opacity: 0.75; }
+
+        @media (max-width: 680px) {
+            .map-real { height: 280px; }
         }
     </style>
 </head>
 <body>
+
     <header>
         <a class="logo" href="../index.html">
             <img src="../img/logo.svg" alt="Estación Lacroze">
@@ -44,36 +67,33 @@
 
     <div class="page-hero linea-b">
         <span class="line-badge red">Línea B · Subterráneo</span>
-        <h1>Subte Línea B</h1>
-        <p>La Línea B conecta la Estación Federico Lacroze con el corazón del microcentro porteño, recorriendo la Avenida Corrientes en apenas 23 minutos.</p>
+        <h1>Subte <em>Línea B</em></h1>
+        <p>Conecta la Estación Federico Lacroze con el microcentro porteño bajo la Avenida Corrientes. 17 estaciones, 23 minutos de extremo a extremo.</p>
+        <div class="stats-row">
+            <div class="stat-item"><strong>17</strong><span>Estaciones</span></div>
+            <div class="stat-item"><strong>11,4 km</strong><span>Recorrido</span></div>
+            <div class="stat-item"><strong>23 min</strong><span>Viaje total</span></div>
+            <div class="stat-item"><strong>200.000</strong><span>Pasajeros / día</span></div>
+        </div>
     </div>
 
     <main>
 
-        <!-- VIEJOS DE JAPÓN -->
+        <!-- RECORRIDO + PARADAS -->
         <section class="seccion">
-            <h2>Los "Viejos de Japón"</h2>
-            <div class="seccion-galeria">
-                <img src="../img/LineaBViejosJapon.jpg" alt="Viejos de Japón - formación completa">
-                <div class="texto">
-                    <p>Durante décadas, la Línea B fue operada por los emblemáticos coches japoneses fabricados por <strong>Tokyu Car Corporation</strong>, adquiridos en los años 60 y 70. El apodo "viejos de Japón" se volvió parte del folklore porteño.</p>
-                    <p>Estos vagones de acero inoxidable se destacaban por su robustez y longevidad, brindando servicio durante más de 40 años. Sus asientos de madera y sus sonidos característicos quedaron grabados en la memoria colectiva de miles de pasajeros.</p>
-                    <p>En 2013 comenzó su retiro progresivo con la llegada de los nuevos trenes CAF, cerrando una era icónica en la historia del subterráneo de Buenos Aires.</p>
-                </div>
-                <img src="../img/ViejoSubteB.jpg" alt="Interior vagón viejo Línea B">
-            </div>
-        </section>
-
-        <!-- RECORRIDO -->
-        <section class="seccion">
-            <h2>El Recorrido</h2>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
-                <div class="recorrido-img" style="margin-top: 0;">
-                    <img src="../img/Línea_B_del_Subte_de_Buenos_Aires.svg" alt="Mapa del recorrido de la Línea B">
-                    <p>La Línea B recorre <strong>11,4 km</strong> a través de <strong>17 estaciones</strong>, uniendo la cabecera en <strong>Federico Lacroze</strong> (Chacarita) con <strong>Leandro N. Alem</strong> en el microcentro. El viaje completo dura aproximadamente <strong>23 minutos</strong>.</p>
+            <h2>Recorrido y Estaciones</h2>
+            <div class="content-sidebar">
+                <div>
+                    <div class="recorrido-img" style="margin-top: 0; margin-bottom: 1.5rem;">
+                        <img src="../img/Línea_B_del_Subte_de_Buenos_Aires.svg" alt="Mapa del recorrido de la Línea B">
+                    </div>
+                    <p>La Línea B es la única que recorre la Av. Corrientes de forma subterránea, conectando <strong>Federico Lacroze</strong> en Chacarita con <strong>Leandro N. Alem</strong> en el microcentro. Es operada por <strong>Emova Group</strong> bajo concesión del Gobierno de la Ciudad.</p>
+                    <div class="alerta" style="margin-top: 1.25rem;">
+                        <strong>Combinaciones:</strong> en <strong>Carlos Gardel</strong> con Línea A · en <strong>Carlos Pellegrini</strong> con Líneas C y D.
+                    </div>
                 </div>
                 <div class="paradas-list">
-                    <div class="parada linea-b terminal">Federico Lacroze</div>
+                    <div class="parada linea-b terminal">Federico Lacroze ★</div>
                     <div class="parada linea-b">Tronador</div>
                     <div class="parada linea-b">Los Incas — Parque Chas</div>
                     <div class="parada linea-b">Dorrego</div>
@@ -86,55 +106,189 @@
                     <div class="parada linea-b">Pasteur — AMIA</div>
                     <div class="parada linea-b">Callao</div>
                     <div class="parada linea-b">Uruguay</div>
-                    <div class="parada linea-b">Carlos Pellegrini ↔ Líneas C / D</div>
+                    <div class="parada linea-b">Carlos Pellegrini ↔ C · D</div>
                     <div class="parada linea-b">Florida</div>
-                    <div class="parada linea-b">Leandro N. Alem</div>
+                    <div class="parada linea-b terminal">Leandro N. Alem ★</div>
                 </div>
             </div>
         </section>
 
-        <!-- NUEVOS VAGONES -->
+        <!-- MAPA REAL -->
         <section class="seccion">
-            <h2>Los Nuevos Vagones</h2>
-            <div class="seccion-media">
-                <img src="../img/NuevaLineaSubteB.webp" alt="Nuevos vagones CAF de la Línea B">
-                <div class="texto">
-                    <p>A partir de 2013, la Línea B incorporó los modernos trenes <strong>CAF Serie 6000</strong>, fabricados por la empresa española Construcciones y Auxiliar de Ferrocarriles. Estos reemplazaron definitivamente a los históricos coches japoneses.</p>
-                    <p>Los nuevos vagones cuentan con <strong>aire acondicionado</strong>, pantallas de información al pasajero, iluminación LED, sistema de apertura y cierre automático de puertas, y mayor capacidad de transporte. También incorporan espacios reservados para personas con movilidad reducida.</p>
-                    <p>Los trenes CAF permiten una frecuencia más alta y un servicio más confiable, mejorando notablemente la experiencia de los más de <strong>200.000 pasajeros</strong> que utiliza la línea cada día.</p>
+            <h2>Ubicación y Acceso</h2>
+            <p style="margin-bottom: 1rem;">La cabecera de la Línea B está en pleno barrio de Chacarita, con acceso directo a la terminal de trenes Urquiza y a la terminal de colectivos.</p>
+            <iframe
+                class="map-real"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.8284254041786!2d-58.46344968476563!3d-34.58789158043871!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb5d32a7281a7%3A0xb3958c82e67b3268!2sEstaci%C3%B3n%20Federico%20Lacroze!5e0!3m2!1ses!2sar!4v1719600000000!5m2!1ses!2sar"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Estación Federico Lacroze - Subte Línea B"
+            ></iframe>
+            <div class="access-grid">
+                <div class="access-card">
+                    <span class="nota-mono">Dirección</span>
+                    <strong>Av. Federico Lacroze y Av. Corrientes</strong>
+                    <span>Chacarita, CABA</span>
                 </div>
+                <div class="access-card">
+                    <span class="nota-mono">Combinaciones</span>
+                    <strong>Tren Urquiza · Colectivos · Taxis</strong>
+                    <span>Intermodal en la misma estación</span>
+                </div>
+                <div class="access-card">
+                    <span class="nota-mono">Accesibilidad</span>
+                    <strong>Ascensores y rampas disponibles</strong>
+                    <span>Molinete adaptado para movilidad reducida</span>
+                </div>
+                <div class="access-card">
+                    <span class="nota-mono">Horario cabecera</span>
+                    <strong>05:30 – 22:30 (días hábiles)</strong>
+                    <span>06:00 – 22:00 sábados · 08:00 – 22:00 dom.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEJOS DE JAPÓN -->
+        <section class="seccion">
+            <h2>Los "Viejos de Japón"</h2>
+            <div class="content-sidebar">
+                <div>
+                    <p>Durante décadas, la Línea B fue operada por los emblemáticos coches japoneses fabricados por <strong>Tokyu Car Corporation</strong>, adquiridos en los años 60 y 70. El apodo "viejos de Japón" se volvió parte del folklore porteño.</p>
+                    <p>Estos vagones de acero inoxidable se destacaban por su robustez y longevidad, brindando servicio durante más de 40 años. Sus asientos de madera y sus sonidos característicos quedaron grabados en la memoria colectiva de miles de pasajeros.</p>
+                    <p>En 2013 comenzó su retiro progresivo con la llegada de los nuevos trenes CAF, cerrando una era icónica en la historia del subterráneo de Buenos Aires.</p>
+                    <div class="info-table-wrap" style="margin-top: 1.5rem;">
+                        <h3>Datos · Coches Tokyu</h3>
+                        <table class="info-table">
+                            <tr><td>Fabricante</td><td>Tokyu Car Corporation</td></tr>
+                            <tr><td>Años de ingreso</td><td>1963 – 1976</td></tr>
+                            <tr><td>Tiempo en servicio</td><td>Más de 40 años</td></tr>
+                            <tr><td>Retiro definitivo</td><td>2013 – 2014</td></tr>
+                            <tr><td>Apodo popular</td><td>"Viejos de Japón"</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <img src="../img/LineaBViejosJapon.jpg" alt="Formación completa Viejos de Japón" style="width: 100%; border-radius: 6px; margin-bottom: 1rem; display: block;">
+                    <img src="../img/ViejoSubteB.jpg" alt="Interior vagón viejo Línea B" style="width: 100%; border-radius: 6px; display: block;">
+                </div>
+            </div>
+        </section>
+
+        <!-- NUEVOS VAGONES CAF -->
+        <section class="seccion">
+            <h2>Los Nuevos Vagones CAF</h2>
+            <div class="content-sidebar">
+                <div>
+                    <img src="../img/NuevaLineaSubteB.webp" alt="Vagones CAF Serie 6000 Línea B" style="width: 100%; border-radius: 6px; display: block;">
+                </div>
+                <div>
+                    <p>A partir de 2013, la Línea B incorporó los modernos trenes <strong>CAF Serie 6000</strong>, fabricados por la empresa española Construcciones y Auxiliar de Ferrocarriles. Reemplazaron definitivamente a los históricos coches japoneses.</p>
+                    <p>Los nuevos vagones cuentan con <strong>aire acondicionado</strong>, pantallas de información al pasajero, iluminación LED y apertura automática de puertas. También incorporan espacios reservados para personas con movilidad reducida.</p>
+                    <div class="info-table-wrap" style="margin-top: 1.5rem;">
+                        <h3>Ficha técnica · CAF Serie 6000</h3>
+                        <table class="info-table">
+                            <tr><td>Fabricante</td><td>CAF — España</td></tr>
+                            <tr><td>Ingreso al servicio</td><td>2013</td></tr>
+                            <tr><td>Capacidad</td><td>~600 pasajeros / formación</td></tr>
+                            <tr><td>Velocidad máxima</td><td>80 km/h</td></tr>
+                            <tr><td>Aire acondicionado</td><td>Sí</td></tr>
+                            <tr><td>Accesibilidad PMR</td><td>Espacios reservados</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FRECUENCIAS -->
+        <section class="seccion">
+            <h2>Horarios y Frecuencias</h2>
+            <div class="freq-grid">
+                <div class="freq-card">
+                    <span class="nota-mono">Hábiles · hora pico</span>
+                    <strong>Cada 3–5 min</strong>
+                    <span>07:00–09:00 / 17:00–20:00 hs</span>
+                </div>
+                <div class="freq-card">
+                    <span class="nota-mono">Hábiles · hora valle</span>
+                    <strong>Cada 6–10 min</strong>
+                    <span>Resto del horario</span>
+                </div>
+                <div class="freq-card">
+                    <span class="nota-mono">Sábados</span>
+                    <strong>Cada 8–12 min</strong>
+                    <span>06:00 – 22:00 hs</span>
+                </div>
+                <div class="freq-card">
+                    <span class="nota-mono">Dom. y feriados</span>
+                    <strong>Cada 10–15 min</strong>
+                    <span>08:00 – 22:00 hs</span>
+                </div>
+            </div>
+            <div class="table-scroll" style="margin-top: 1.5rem;">
+                <table class="tabla-datos">
+                    <thead>
+                        <tr>
+                            <th>Día</th>
+                            <th>Apertura</th>
+                            <th>Cierre</th>
+                            <th>Frecuencia pico</th>
+                            <th>Frecuencia valle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Lunes a viernes</td><td>05:30 hs</td><td>22:30 hs</td><td>Cada 3 min</td><td>Cada 7 min</td></tr>
+                        <tr><td>Sábados</td><td>06:00 hs</td><td>22:00 hs</td><td>Cada 8 min</td><td>Cada 12 min</td></tr>
+                        <tr><td>Domingos y feriados</td><td>08:00 hs</td><td>22:00 hs</td><td>Cada 10 min</td><td>Cada 15 min</td></tr>
+                    </tbody>
+                </table>
             </div>
         </section>
 
         <!-- FORMAS DE PAGO -->
         <section class="seccion">
             <h2>Formas de Pago</h2>
-            <div class="formas-pago">
-                <p>Para acceder al servicio de la Línea B podés abonar el boleto utilizando los siguientes medios:</p>
-                <ul>
-                    <li>
-                        SUBE
-                        <span>Tarjeta de transporte público recargable, válida en toda la red de subtes, trenes y colectivos del AMBA.</span>
-                    </li>
-                    <li>
-                        SUBE Digital
-                        <span>Disponible desde la app oficial del Gobierno. Funciona a través de NFC en celulares compatibles.</span>
-                    </li>
-                    <li>
-                        Tarjeta de crédito / débito
-                        <span>Contactless directamente en el molinete, sin necesidad de tarjeta SUBE física.</span>
-                    </li>
-                    <li>
-                        Tarjeta prepaga
-                        <span>Tarjetas como Mercado Pago o Ualá con tecnología NFC habilitadas para transporte público.</span>
-                    </li>
-                </ul>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>SUBE</h3>
+                    <ul>
+                        <li>Tarjeta recargable oficial</li>
+                        <li>Válida en subte, tren y colectivo AMBA</li>
+                        <li>Descuento por trasbordo</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>SUBE Digital</h3>
+                    <ul>
+                        <li>Desde el celular con NFC</li>
+                        <li>App oficial del Gobierno de la Ciudad</li>
+                        <li>Sin tarjeta física necesaria</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>Tarjeta contactless</h3>
+                    <ul>
+                        <li>Débito o crédito directo</li>
+                        <li>Molinete habilitado para NFC</li>
+                        <li>Sin configuración extra</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>Billeteras virtuales</h3>
+                    <ul>
+                        <li>Mercado Pago, Ualá y otras</li>
+                        <li>Requiere chip NFC activo</li>
+                        <li>Saldo recargable desde la app</li>
+                    </ul>
+                </div>
             </div>
         </section>
+
     </main>
 
     <footer>
         <p>Estación Lacroze &copy; 2026 &mdash; <a href="../contacto.html">Contacto</a></p>
     </footer>
+
 </body>
 </html>
