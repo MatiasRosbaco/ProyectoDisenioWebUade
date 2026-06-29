@@ -3,13 +3,259 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estación Lacroze - Contacto</title>
+    <title>Contacto — Estación Lacroze</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ── LAYOUT CONTACTO ── */
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        /* FORMULARIO */
+        .form-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 2rem 2.25rem;
+        }
+        .form-card h2 {
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--yellow);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            font-size: 0.78rem;
+            font-family: var(--mono);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--ink-soft);
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            font-family: var(--sans);
+            font-size: 0.92rem;
+            color: var(--ink);
+            background: #fff;
+            border: 1.5px solid var(--line);
+            border-radius: 5px;
+            padding: 0.6rem 0.8rem;
+            outline: none;
+            transition: border-color 0.18s;
+            resize: vertical;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--navy);
+        }
+        .form-group textarea {
+            min-height: 120px;
+        }
+        .btn-enviar {
+            display: inline-block;
+            background: var(--navy);
+            color: var(--cream);
+            font-family: var(--sans);
+            font-size: 0.92rem;
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            letter-spacing: 0.02em;
+            transition: background 0.18s, transform 0.1s;
+            margin-top: 0.5rem;
+        }
+        .btn-enviar:hover  { background: #1a2a4a; }
+        .btn-enviar:active { transform: scale(0.98); }
+
+        /* SIDEBAR DERECHA */
+        .contacto-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        /* CARDS INFO */
+        .info-card {
+            background: var(--navy);
+            color: var(--cream);
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+        }
+        .info-card h3 {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--yellow);
+            margin-bottom: 0.75rem;
+        }
+        .info-card .dato {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            margin-bottom: 0.6rem;
+            font-size: 0.88rem;
+            line-height: 1.4;
+        }
+        .info-card .dato-icon {
+            width: 18px;
+            flex-shrink: 0;
+            opacity: 0.6;
+            margin-top: 1px;
+        }
+        .info-card .dato strong {
+            display: block;
+            font-size: 0.95rem;
+            color: var(--cream);
+        }
+        .info-card .dato span {
+            color: rgba(240,232,210,0.65);
+            font-size: 0.82rem;
+        }
+
+        /* SERVICIOS CONTACTO */
+        .servicios-contacto {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .servicio-card {
+            border: 1.5px solid var(--line);
+            border-radius: 8px;
+            padding: 1.1rem 1.25rem;
+            background: var(--surface);
+        }
+        .servicio-card .sc-badge {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            background: var(--navy);
+            color: var(--cream);
+            padding: 0.18rem 0.5rem;
+            border-radius: 3px;
+            margin-bottom: 0.55rem;
+        }
+        .servicio-card h3 {
+            font-family: var(--serif);
+            font-size: 0.95rem;
+            color: var(--navy);
+            margin-bottom: 0.35rem;
+        }
+        .servicio-card p {
+            font-size: 0.8rem;
+            color: var(--ink-soft);
+            line-height: 1.45;
+            margin: 0;
+        }
+        .servicio-card a {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 0.78rem;
+            font-family: var(--mono);
+            color: var(--navy);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        /* MAPA */
+        .mapa-contacto {
+            width: 100%;
+            height: 240px;
+            border: 0;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* FAQ */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .faq-item {
+            border-bottom: 1px solid var(--line);
+        }
+        .faq-item:first-child {
+            border-top: 1px solid var(--line);
+        }
+        .faq-q {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 1rem 0;
+            font-family: var(--sans);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--navy);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        .faq-q::after {
+            content: "+";
+            font-size: 1.3rem;
+            font-weight: 300;
+            flex-shrink: 0;
+            color: var(--yellow);
+            transition: transform 0.2s;
+        }
+        .faq-item.open .faq-q::after {
+            transform: rotate(45deg);
+        }
+        .faq-a {
+            display: none;
+            font-size: 0.88rem;
+            color: var(--ink-soft);
+            line-height: 1.65;
+            padding-bottom: 1rem;
+        }
+        .faq-item.open .faq-a {
+            display: block;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .contacto-grid { grid-template-columns: 1fr; }
+            .contacto-sidebar { order: -1; }
+            .mapa-contacto { height: 200px; }
+        }
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; }
+            .servicios-contacto { grid-template-columns: 1fr; }
+            .form-card { padding: 1.5rem 1.25rem; }
+        }
+    </style>
 </head>
 <body>
+
     <header>
         <a class="logo" href="index.html">
             <img src="img/logo.svg" alt="Estación Lacroze">
@@ -27,19 +273,197 @@
         </nav>
     </header>
 
-    <main>
-        <h1>Contacto</h1>
-        <p>Consultas y soporte sobre los servicios de la estación.</p>
-
-        <div class="contacto-info">
-            <p><strong>Dirección:</strong> Av. Federico Lacroze 4171, CABA</p>
-            <p><strong>Teléfono:</strong> (011) 0800-333-8736</p>
-            <p><strong>Horario de atención:</strong> Lunes a viernes de 8:00 a 20:00 hs</p>
+    <div class="page-hero">
+        <span class="line-badge">Atención al Pasajero · Información</span>
+        <h1><em>Contacto</em></h1>
+        <p>Consultas, reclamos y sugerencias sobre los servicios de la Estación Federico Lacroze. Respondemos en hasta 48 horas hábiles.</p>
+        <div class="stats-row">
+            <div class="stat-item"><strong>48 hs</strong><span>Tiempo de respuesta</span></div>
+            <div class="stat-item"><strong>8–20 hs</strong><span>Atención presencial</span></div>
+            <div class="stat-item"><strong>0800</strong><span>Línea gratuita</span></div>
+            <div class="stat-item"><strong>Lun–Vie</strong><span>Días hábiles</span></div>
         </div>
+    </div>
+
+    <main>
+
+        <!-- GRID PRINCIPAL -->
+        <section class="seccion" style="padding-top: 0;">
+            <div class="contacto-grid">
+
+                <!-- FORMULARIO -->
+                <div class="form-card">
+                    <h2>Envianos tu consulta</h2>
+                    <form action="#" method="post" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="apellido">Apellido</label>
+                                <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="servicio">Servicio relacionado</label>
+                            <select id="servicio" name="servicio">
+                                <option value="">Seleccioná una opción</option>
+                                <option value="linea-b">Subte Línea B</option>
+                                <option value="urquiza">Tren Urquiza</option>
+                                <option value="colectivos">Colectivos / Terminal</option>
+                                <option value="taxis">Taxis y Remises</option>
+                                <option value="movilidad">Movilidad Sustentable</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="asunto">Asunto</label>
+                            <input type="text" id="asunto" name="asunto" placeholder="Ej: Consulta sobre tarifa SUBE">
+                        </div>
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" placeholder="Describí tu consulta o reclamo con el mayor detalle posible..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-enviar">Enviar mensaje</button>
+                    </form>
+                </div>
+
+                <!-- SIDEBAR DERECHA -->
+                <div class="contacto-sidebar">
+
+                    <!-- MAPA -->
+                    <iframe
+                        class="mapa-contacto"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.8284254041786!2d-58.46344968476563!3d-34.58789158043871!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb5d32a7281a7%3A0xb3958c82e67b3268!2sEstaci%C3%B3n%20Federico%20Lacroze!5e0!3m2!1ses!2sar!4v1719600000000!5m2!1ses!2sar"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Estación Federico Lacroze"
+                    ></iframe>
+
+                    <!-- INFO PRINCIPAL -->
+                    <div class="info-card">
+                        <h3>Información de contacto</h3>
+                        <div class="dato">
+                            <svg class="dato-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <div>
+                                <strong>Av. Federico Lacroze 4171</strong>
+                                <span>Chacarita, CABA — C1427BNA</span>
+                            </div>
+                        </div>
+                        <div class="dato">
+                            <svg class="dato-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.21a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+                            <div>
+                                <strong>0800-333-8736</strong>
+                                <span>Llamada gratuita · Lun a Vie 8–20 hs</span>
+                            </div>
+                        </div>
+                        <div class="dato">
+                            <svg class="dato-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                            <div>
+                                <strong>info@estacionlacroze.gob.ar</strong>
+                                <span>Respuesta en hasta 48 hs hábiles</span>
+                            </div>
+                        </div>
+                        <div class="dato">
+                            <svg class="dato-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            <div>
+                                <strong>Lunes a viernes · 8:00 – 20:00 hs</strong>
+                                <span>Atención presencial en boletería principal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTOS POR SERVICIO -->
+        <section class="seccion">
+            <h2>Contacto por servicio</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--ink-soft);">Cada operador tiene su propio canal de atención. Para consultas específicas, contactá directamente al organismo responsable.</p>
+            <div class="servicios-contacto">
+                <div class="servicio-card">
+                    <span class="sc-badge">Subte</span>
+                    <h3>Línea B — Emova Group</h3>
+                    <p>Reclamos, accesibilidad y objetos perdidos en la red de subte.</p>
+                    <a href="https://www.metrovias.com.ar" target="_blank" rel="noopener">metrovias.com.ar ↗</a>
+                </div>
+                <div class="servicio-card">
+                    <span class="sc-badge">Tren</span>
+                    <h3>Tren Urquiza — Metrovías</h3>
+                    <p>Horarios, frecuencias y reclamos del servicio ferroviario.</p>
+                    <a href="https://www.metrovias.com.ar" target="_blank" rel="noopener">metrovias.com.ar ↗</a>
+                </div>
+                <div class="servicio-card">
+                    <span class="sc-badge">Colectivos</span>
+                    <h3>SUBE y Colectivos — CNRT</h3>
+                    <p>Reclamos de tarifa, refuerzos de servicio y habilitaciones.</p>
+                    <a href="https://www.cnrt.gob.ar" target="_blank" rel="noopener">cnrt.gob.ar ↗</a>
+                </div>
+                <div class="servicio-card">
+                    <span class="sc-badge">Taxis</span>
+                    <h3>Taxis — Gobierno de la Ciudad</h3>
+                    <p>Denuncias de conductores no habilitados y tarifas irregulares.</p>
+                    <a href="https://www.buenosaires.gob.ar" target="_blank" rel="noopener">buenosaires.gob.ar ↗</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="seccion">
+            <h2>Preguntas frecuentes</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-q" aria-expanded="false">¿Cómo cargo la tarjeta SUBE?</button>
+                    <div class="faq-a">Podés recargar la SUBE en las máquinas automáticas dentro de la estación, en comercios adheridos (kioscos con logo SUBE), a través de la app SUBE, o en cualquier cajero automático habilitado. El saldo queda disponible en el primer uso con lector.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" aria-expanded="false">¿Hay estacionamiento en la estación?</button>
+                    <div class="faq-a">La Estación Federico Lacroze no cuenta con estacionamiento propio. En las inmediaciones de Av. Federico Lacroze y Av. Corrientes hay playas de estacionamiento privadas y en algunas calles adyacentes se permite estacionar en horario no restringido.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" aria-expanded="false">¿Qué hago si olvidé algo en el tren o subte?</button>
+                    <div class="faq-a">Para objetos olvidados en el Subte Línea B comunicate con Emova Group a través de su sitio oficial. Para el Tren Urquiza, el servicio de objetos perdidos funciona en las oficinas de Metrovías en la estación, en el horario de 9:00 a 17:00 hs los días hábiles.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" aria-expanded="false">¿La estación tiene accesibilidad para personas con movilidad reducida?</button>
+                    <div class="faq-a">Sí. La estación cuenta con rampas de acceso, ascensores y molinetes adaptados en el acceso al Subte Línea B. Los nuevos vagones CAF incluyen espacios reservados y las formaciones del Tren Urquiza tienen coches con piso bajo. En caso de necesitar asistencia, el personal de la estación está disponible en el horario de apertura.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" aria-expanded="false">¿Cómo reporto un problema con el servicio?</button>
+                    <div class="faq-a">Podés usar el formulario de esta página para consultas generales sobre la estación. Para reclamos específicos de cada servicio (subte, tren, colectivos), te recomendamos contactar directamente al operador correspondiente usando los enlaces de la sección "Contacto por servicio" que aparece más arriba.</div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer>
         <p>Estación Lacroze &copy; 2026 &mdash; <a href="contacto.html">Contacto</a></p>
     </footer>
+
+    <script>
+        document.querySelectorAll('.faq-q').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.closest('.faq-item');
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item.open').forEach(i => {
+                    i.classList.remove('open');
+                    i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+                });
+                if (!isOpen) {
+                    item.classList.add('open');
+                    btn.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
