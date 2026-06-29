@@ -241,6 +241,44 @@
             display: block;
         }
 
+        /* MENSAJE ÉXITO */
+        .form-exito {
+            text-align: center;
+            padding: 3rem 1.5rem;
+        }
+        .form-exito svg {
+            width: 56px;
+            height: 56px;
+            color: #2a9d5c;
+            margin-bottom: 1rem;
+        }
+        .form-exito h3 {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+        .form-exito p {
+            font-size: 0.9rem;
+            color: var(--ink-soft);
+            line-height: 1.6;
+            max-width: 340px;
+            margin: 0 auto 1.5rem;
+        }
+        .btn-nuevo {
+            background: none;
+            border: 1.5px solid var(--navy);
+            color: var(--navy);
+            font-family: var(--sans);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.55rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.18s, color 0.18s;
+        }
+        .btn-nuevo:hover { background: var(--navy); color: var(--cream); }
+
         /* RESPONSIVE */
         @media (max-width: 900px) {
             .contacto-grid { grid-template-columns: 1fr; }
@@ -294,7 +332,13 @@
                 <!-- FORMULARIO -->
                 <div class="form-card">
                     <h2>Envianos tu consulta</h2>
-                    <form action="#" method="post" novalidate>
+                    <div class="form-exito" id="form-exito" hidden>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                        <h3>¡Mensaje enviado!</h3>
+                        <p>Gracias por contactarnos. Te responderemos dentro de las próximas 48 horas hábiles al email que nos indicaste.</p>
+                        <button type="button" class="btn-nuevo" onclick="resetForm()">Enviar otro mensaje</button>
+                    </div>
+                    <form id="contacto-form" action="#" method="post" novalidate>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="nombre">Nombre</label>
@@ -449,6 +493,7 @@
     </footer>
 
     <script>
+        // FAQ accordion
         document.querySelectorAll('.faq-q').forEach(btn => {
             btn.addEventListener('click', () => {
                 const item = btn.closest('.faq-item');
@@ -463,6 +508,20 @@
                 }
             });
         });
+
+        // Formulario — mensaje de éxito visual
+        document.getElementById('contacto-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.hidden = true;
+            document.getElementById('form-exito').hidden = false;
+        });
+
+        function resetForm() {
+            const form = document.getElementById('contacto-form');
+            form.reset();
+            form.hidden = false;
+            document.getElementById('form-exito').hidden = true;
+        }
     </script>
 
 </body>
