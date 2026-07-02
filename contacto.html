@@ -132,7 +132,7 @@
             color: var(--cream);
         }
         .info-card .dato span {
-            color: rgba(240,232,210,0.65);
+            color: rgba(240,232,210,0.88);
             font-size: 0.82rem;
         }
 
@@ -279,6 +279,45 @@
         }
         .btn-nuevo:hover { background: var(--navy); color: var(--cream); }
 
+        /* VALIDACIÓN */
+        .form-group input.field-error,
+        .form-group select.field-error,
+        .form-group textarea.field-error {
+            border-color: #C8102E;
+            background: #fff8f8;
+        }
+        .error-msg {
+            font-size: 0.74rem;
+            color: #C8102E;
+            font-family: var(--mono);
+            margin-top: 0.2rem;
+            display: block;
+        }
+
+        /* GALERÍA TERMINAL */
+        .galeria-terminal {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr;
+            grid-template-rows: 210px 170px;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+        }
+        .galeria-item {
+            overflow: hidden;
+            border-radius: 6px;
+            background: var(--navy);
+        }
+        .galeria-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.35s ease;
+        }
+        .galeria-item:hover img { transform: scale(1.04); }
+        .galeria-item.grande   { grid-row: 1 / 3; }
+        .galeria-item.wide     { grid-column: 2 / 4; }
+
         /* RESPONSIVE */
         @media (max-width: 900px) {
             .contacto-grid { grid-template-columns: 1fr; }
@@ -289,6 +328,12 @@
             .form-row { grid-template-columns: 1fr; }
             .servicios-contacto { grid-template-columns: 1fr; }
             .form-card { padding: 1.5rem 1.25rem; }
+            .galeria-terminal {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 160px 160px 140px;
+            }
+            .galeria-item.grande { grid-row: auto; }
+            .galeria-item.wide   { grid-column: 1 / 3; }
         }
     </style>
 </head>
@@ -427,6 +472,26 @@
             </div>
         </section>
 
+        <!-- GALERÍA DE LA ESTACIÓN -->
+        <section class="seccion">
+            <h2>La Estación en Imágenes</h2>
+            <p style="color: var(--ink-soft); margin-bottom: 0;">Un vistazo a las instalaciones, servicios y el movimiento cotidiano del centro de transporte intermodal más activo de Chacarita.</p>
+            <div class="galeria-terminal">
+                <div class="galeria-item grande">
+                    <img src="img/terminal.jpg" alt="Vista general de la terminal Lacroze">
+                </div>
+                <div class="galeria-item">
+                    <img src="img/trenUrquiza.jpg" alt="Tren Urquiza en la estación">
+                </div>
+                <div class="galeria-item">
+                    <img src="img/subteLineaB.jpg" alt="Acceso al Subte Línea B">
+                </div>
+                <div class="galeria-item wide">
+                    <img src="img/ColectivoLacroze.jpg" alt="Terminal de colectivos Lacroze">
+                </div>
+            </div>
+        </section>
+
         <!-- CONTACTOS POR SERVICIO -->
         <section class="seccion">
             <h2>Contacto por servicio</h2>
@@ -509,15 +574,64 @@
             });
         });
 
-        // Formulario — mensaje de éxito visual
+        // Validación del formulario
+        function validateForm(form) {
+            // Limpiar errores anteriores
+            form.querySelectorAll('.field-error').forEach(el => el.classList.remove('field-error'));
+            form.querySelectorAll('.error-msg').forEach(el => el.remove());
+
+            let valid = true;
+
+            function showError(field, msg) {
+                field.classList.add('field-error');
+                const err = document.createElement('span');
+                err.className = 'error-msg';
+                err.textContent = msg;
+                field.parentNode.appendChild(err);
+                if (valid) field.focus();
+                valid = false;
+            }
+
+            const nombre = form.querySelector('#nombre');
+            if (!nombre.value.trim()) showError(nombre, 'El nombre es obligatorio.');
+
+            const apellido = form.querySelector('#apellido');
+            if (!apellido.value.trim()) showError(apellido, 'El apellido es obligatorio.');
+
+            const email = form.querySelector('#email');
+            const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+            if (!email.value.trim()) showError(email, 'El email es obligatorio.');
+            else if (!emailRe.test(email.value.trim())) showError(email, 'Ingresá un email válido (ej: nombre@ejemplo.com).');
+
+            const mensaje = form.querySelector('#mensaje');
+            if (!mensaje.value.trim()) showError(mensaje, 'El mensaje es obligatorio.');
+            else if (mensaje.value.trim().length < 10) showError(mensaje, 'El mensaje debe tener al menos 10 caracteres.');
+
+            return valid;
+        }
+
+        // Formulario — validar y mostrar éxito
         document.getElementById('contacto-form').addEventListener('submit', function(e) {
             e.preventDefault();
+            if (!validateForm(this)) return;
             this.hidden = true;
             document.getElementById('form-exito').hidden = false;
         });
 
+        // Limpiar error individual al editar el campo
+        document.getElementById('contacto-form').addEventListener('input', function(e) {
+            const field = e.target;
+            if (field.classList.contains('field-error')) {
+                field.classList.remove('field-error');
+                const err = field.parentNode.querySelector('.error-msg');
+                if (err) err.remove();
+            }
+        });
+
         function resetForm() {
             const form = document.getElementById('contacto-form');
+            form.querySelectorAll('.field-error').forEach(el => el.classList.remove('field-error'));
+            form.querySelectorAll('.error-msg').forEach(el => el.remove());
             form.reset();
             form.hidden = false;
             document.getElementById('form-exito').hidden = true;
