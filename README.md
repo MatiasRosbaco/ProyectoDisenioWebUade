@@ -40,6 +40,7 @@ El sitio centraliza toda la información operativa de la estación en un único 
 - Tooltips implementados con JavaScript puro: se escuchan eventos `mousemove` sobre las zonas SVG, se calculan las coordenadas del cursor y se posiciona el tooltip dinámicamente. Si el tooltip se acerca al borde del viewport, JavaScript lo reposiciona automáticamente para que no se corte.
 - Leyenda con código de colores para cada tipo de servicio o área, construida en HTML/CSS puro.
 - Sección de "Puntos de Acceso" debajo del mapa con las 3 entradas principales.
+- **Accesibilidad:** textos secundarios corregidos de `--muted` (#6B7280) a `--ink-soft` (#3A3A3A), mejorando la relación de contraste de ~4.4:1 a ~9:1 (WCAG AA).
 
 ### `servicios-terminal.html` — Servicios internos
 **Tecnologías:** HTML5 · CSS3 · JavaScript (Vanilla ES6+) · Bootstrap 5.3.3
@@ -48,9 +49,14 @@ El sitio centraliza toda la información operativa de la estación en un único 
 - Chatbot FAQ construido con JavaScript puro: el sistema compara el input del usuario contra un diccionario de palabras clave y retorna la respuesta correspondiente. Los mensajes se agregan al DOM dinámicamente, el historial hace scroll automático con `scrollTop`, y se diferencia visualmente el mensaje del usuario del del bot con clases CSS. Respuesta de fallback para preguntas no reconocidas.
 
 ### `contacto.html` — Contacto
-**Tecnologías:** HTML5 · CSS3
+**Tecnologías:** HTML5 · CSS3 · JavaScript (Vanilla ES6+) · Google Maps Embed API
 
-- Página estática con dirección, teléfono y horario de atención. Sin JavaScript.
+- Formulario de consulta con **validación client-side en JavaScript puro**: campos obligatorios (nombre, apellido, email, mensaje), validación de formato de email con expresión regular, y mínimo de 10 caracteres en el mensaje. Cada error se muestra debajo del campo correspondiente con borde rojo; se limpia automáticamente cuando el usuario empieza a corregirlo.
+- Al enviar el formulario correctamente se muestra un **mensaje de éxito visual** (sin envío real al servidor): el formulario se oculta con `hidden` y se muestra un panel de confirmación con ícono SVG. El botón "Enviar otro mensaje" resetea el estado completo.
+- **Galería de imágenes** de la estación en grid asimétrico CSS: la imagen principal ocupa toda la altura izquierda (`grid-row: span 2`), y tres fotos secundarias se distribuyen en la columna derecha con la última expandida a ancho completo (`grid-column: span 2`). Colapsa a 2 columnas en mobile.
+- Mapa embebido de Google Maps Embed API mostrando la ubicación real de la estación (`<iframe>` sin API key).
+- Cards de contacto por servicio (Subte/Tren/CNRT/Ciudad) y **acordeón FAQ** implementado en JavaScript puro: un único ítem puede estar abierto a la vez, el ícono `+` rota 45° con CSS `transform`, el panel se muestra/oculta con `display: block/none`.
+- Sección de información de contacto con iconos SVG inline (sin dependencias de icon fonts).
 
 ### `servicios/tren-urquiza.html` — Tren Urquiza
 **Tecnologías:** HTML5 · CSS3 · Google Maps Embed API
@@ -62,12 +68,15 @@ El sitio centraliza toda la información operativa de la estación en un único 
 - Sección de accesibilidad con 6 subsecciones.
 
 ### `servicios/subte-linea-b.html` — Subte Línea B
-**Tecnologías:** HTML5 · CSS3 · SVG
+**Tecnologías:** HTML5 · CSS3 · SVG · Google Maps Embed API
 
-- Información histórica sobre los "Viejos de Japón" (material rodante 1960-2000) y el nuevo material CAF Serie 6000.
-- Mapa del recorrido de la línea embebido como archivo SVG externo (`<img src="...svg">`), lo que permite escala sin pérdida de calidad.
-- Listado de estaciones con cajas de colores según zona, implementado con clases CSS.
-- Medios de pago: HTML estático, sin JS.
+- Hero con **stats-row**: 17 estaciones · 11,4 km · 23 min · 200.000 pasajeros/día.
+- Layout de dos columnas (`content-sidebar`): mapa SVG del recorrido a la izquierda, lista completa de 16 estaciones (con cabeceras marcadas) a la derecha.
+- **Mapa real de Google Maps** embebido vía `<iframe>` mostrando la Estación Federico Lacroze, con grid de 4 cards de acceso debajo (dirección, combinaciones, accesibilidad, horario).
+- Sección histórica "Viejos de Japón" con ficha técnica de los coches Tokyu (fabricante, años en servicio, apodo) en formato tabla navy.
+- Ficha técnica del material CAF Serie 6000 (velocidad máxima, capacidad, accesibilidad PMR).
+- Tabla de frecuencias completa: hora pico/valle por tipo de día, con `freq-card` visuales arriba.
+- Formas de pago con `feature-grid` de 4 cards (SUBE, SUBE Digital, contactless, billeteras virtuales).
 
 ### `servicios/colectivos.html` — Colectivos
 **Tecnologías:** HTML5 · CSS3
@@ -116,7 +125,7 @@ El archivo `css/style.css` define un sistema de diseño completo con:
 - Etiquetas `aria-label` y `aria-live` en el mapa interactivo y el chatbot.
 - Atributos `alt` en todas las imágenes.
 - Soporte para `prefers-reduced-motion`: la animación de pulso del hero se desactiva si el usuario lo configura en el sistema operativo.
-- Contraste de color adecuado en toda la paleta.
+- Contraste de color revisado: textos secundarios en el mapa y contacto corregidos para superar la relación mínima de 4.5:1 exigida por WCAG AA. Los textos decorativos de baja opacidad en el SVG del mapa son intencionales (fondo, no contenido).
 - Tipografía monoespaciada (`JetBrains Mono`) para datos numéricos y horarios, mejorando la legibilidad de tablas.
 - Estructura de encabezados jerárquica (`h1` → `h2` → `h3`) en todas las páginas.
 
